@@ -101,10 +101,12 @@ def main():
         if len(i) and len(o):
             lines.append(f"| {c} | {i.iloc[0]:.0f} | {o.iloc[0]:.0f} | {o.iloc[0]/i.iloc[0]:.2f}× |")
 
-    lines += ["", "## Not yet swept (flagged)",
-              "- FLORES+ vs UDHR fertility genre check (needs UDHR corpus ingest).",
-              "- Wage-tier swaps (Tier 1 ILOSTAT / Tier 3 minimum wage) — only World Bank Tier-2",
-              "  is populated in this run; the pipeline supports the column when tiers are added."]
+    lines += ["", "## Other sensitivity axes (separate reports)",
+              "- **FLORES vs UDHR fertility** genre check: see `reports/udhr_crosscheck.md`",
+              "  (a second, legal-prose corpus). Portuguese/Spanish/French are stable (<7%);",
+              "  several languages (e.g. Vietnamese, Yoruba, Hausa) are strongly genre-sensitive.",
+              "- **Wage-tier swap**: ILOSTAT Tier-1 earnings vs World Bank Tier-2 (GNI/2080h):",
+              "  see `reports/ilostat_wages.md` / `data/ilostat_wages.parquet` where populated."]
     OUT.write_text("\n".join(lines) + "\n")
     print(f"wrote {OUT.relative_to(ROOT)}")
     # loud summary of the tokenizer lottery

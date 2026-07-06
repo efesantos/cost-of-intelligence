@@ -41,18 +41,20 @@ Everything is reported **per tokenizer family** — no single "the token."
 
 Regressing country-level AI adoption (Anthropic Economic Index `usage_per_capita_index`,
 Sept 2025) on affordability. Pre-registered in [`docs/adoption_analysis_plan.md`](docs/adoption_analysis_plan.md)
-**before** the merge. Current result (N=9, honestly underpowered):
+**before** the merge. Result over a **23-country** panel:
 
-- **Spearman ρ(work_minutes, adoption) = −0.68 (p = 0.042)** — less affordable → less adoption.
-- In OLS with a GDP-per-capita-PPP control the affordability coefficient loses significance
-  (affordability is collinear with income) — *exactly* the pre-registered "the tax adds no
-  explanatory power beyond income" outcome, which is itself informative.
-- **Association, not causation.** Expanding the language set (→ more countries, N≥15) is the
-  path to a better-powered estimate.
+- **Spearman ρ(work_minutes, adoption) = −0.85 (p < 0.0001)** — a strong, highly significant
+  relationship: the more minutes of work a bundle costs, the lower the adoption.
+- In OLS with a GDP-per-capita-PPP control the affordability coefficient collapses to ~0
+  (p ≈ 0.92) — affordability is collinear with income and adds no explanatory power beyond it.
+  This is *exactly* the pre-registered "the tax adds no explanatory power beyond income"
+  outcome — now well-powered (N=23), and itself the informative finding.
+- **Association, not causation.** The honest read: affordability tracks adoption tightly, but
+  we cannot separate it from income with observational country data.
 
 ## What's built (all live-pulled, date-stamped, `make all`-reproducible)
 
-- `src/corpus.py` + `src/run_fertility.py` — fertility for **12 languages × 6 tokenizer
+- `src/corpus.py` + `src/run_fertility.py` — fertility for **28 languages × 6 tokenizer
   families** on FLORES-200 with paired bootstrap CIs. Identity + ordering sanity checks pass.
   See [`reports/fertility_report.md`](reports/fertility_report.md).
 - `src/prices.py` — live OpenRouter anchor prices per family (flagship + small), snapshotted.

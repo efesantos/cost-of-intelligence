@@ -35,10 +35,11 @@ def load_config() -> dict:
 
 def all_languages(cfg: dict) -> List[str]:
     seen, out = set(), []
-    for lang in cfg["launch"] + cfg["extension"]:
-        if lang not in seen:
-            seen.add(lang)
-            out.append(lang)
+    for group in ("launch", "extension", "panel"):
+        for lang in cfg.get(group) or []:
+            if lang not in seen:
+                seen.add(lang)
+                out.append(lang)
     return out
 
 
@@ -51,6 +52,7 @@ def download(split: str = "devtest") -> Dict[str, pathlib.Path]:
     RAW.mkdir(parents=True, exist_ok=True)
     written: Dict[str, pathlib.Path] = {}
 
+    unavailable = []
     for lang in all_languages(cfg):
         if lang == ref:
             pair = f"{ref}-por_Latn"  # any pair carries the identical eng column
@@ -58,7 +60,12 @@ def download(split: str = "devtest") -> Dict[str, pathlib.Path]:
         else:
             pair = f"{ref}-{lang}"
             col = f"sentence_{lang}"
-        ds = load_dataset("Muennighoff/flores200", pair, split=split, trust_remote_code=True)
+        try:
+            ds = load_dataset("Muennighoff/flores200", pair, split=split, trust_remote_code=True)
+        except Exception as e:  # noqa: BLE001 -- skip languages absent from FLORES-200
+            unavailable.append((lang, type(e).__name__))
+            print(f"  {lang:10s} UNAVAILABLE ({type(e).__name__}) -- skipped")
+            continue
         aligned = {str(row["id"]): row[col] for row in ds}
         out = RAW / f"{lang}.jsonl"
         with out.open("w", encoding="utf-8") as fh:
@@ -70,6 +77,8 @@ def download(split: str = "devtest") -> Dict[str, pathlib.Path]:
                 fh.write(json.dumps({"id": sid, "text": text}, ensure_ascii=False) + "\n")
         written[lang] = out
         print(f"  {lang:10s} {len(aligned):5d} sentences -> {out.name}")
+    if unavailable:
+        print(f"  {len(unavailable)} unavailable: {[u[0] for u in unavailable]}")
     return written
 
 

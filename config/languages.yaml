@@ -28,6 +28,27 @@ extension:
   - hin_Deva   # Hindi (Devanagari)
   - zho_Hans   # Chinese (Simplified — logographic)
 
+# Panel-widening set (Task: widen adoption regression to N>=15 countries). Each
+# maps to a distinct country with likely AEI + World Bank coverage. Any code not
+# present in FLORES-200 is skipped gracefully by corpus.py and logged.
+panel:
+  - ind_Latn   # Indonesian -> Indonesia
+  - vie_Latn   # Vietnamese -> Vietnam
+  - tha_Thai   # Thai -> Thailand
+  - tur_Latn   # Turkish -> Turkey
+  - rus_Cyrl   # Russian -> Russia
+  - deu_Latn   # German -> Germany
+  - ita_Latn   # Italian -> Italy
+  - pol_Latn   # Polish -> Poland
+  - jpn_Jpan   # Japanese -> Japan
+  - kor_Hang   # Korean -> South Korea
+  - ben_Beng   # Bengali -> Bangladesh
+  - tgl_Latn   # Tagalog -> Philippines
+  - ukr_Cyrl   # Ukrainian -> Ukraine
+  - ron_Latn   # Romanian -> Romania
+  - ell_Grek   # Greek -> Greece
+  - pes_Arab   # Persian -> Iran
+
 # Human-readable names for reports/figures.
 names:
   eng_Latn: English
@@ -42,3 +63,19 @@ names:
   arb_Arab: Arabic
   hin_Deva: Hindi
   zho_Hans: Chinese (Simp.)
+  ind_Latn: Indonesian
+  vie_Latn: Vietnamese
+  tha_Thai: Thai
+  tur_Latn: Turkish
+  rus_Cyrl: Russian
+  deu_Latn: German
+  ita_Latn: Italian
+  pol_Latn: Polish
+  jpn_Jpan: Japanese
+  kor_Hang: Korean
+  ben_Beng: Bengali
+  tgl_Latn: Tagalog
+  ukr_Cyrl: Ukrainian
+  ron_Latn: Romanian
+  ell_Grek: Greek
+  pes_Arab: Persian

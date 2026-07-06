@@ -2,6 +2,53 @@ window.__COI_DATA__ = {
  "generated": "2026-07-06",
  "price_source": "2026-07-06T01:02:39Z",
  "fertility": {
+  "jpn_Jpan": {
+   "name": "Japanese",
+   "families": {
+    "aya": {
+     "fertility": 0.9033,
+     "ci": [
+      0.8929,
+      0.9137
+     ]
+    },
+    "gemma": {
+     "fertility": 1.1823,
+     "ci": [
+      1.1692,
+      1.1956
+     ]
+    },
+    "llama3": {
+     "fertility": 1.5108,
+     "ci": [
+      1.4944,
+      1.5274
+     ]
+    },
+    "openai_cl100k": {
+     "fertility": 2.2656,
+     "ci": [
+      2.2391,
+      2.292
+     ]
+    },
+    "openai_o200k": {
+     "fertility": 1.6581,
+     "ci": [
+      1.6393,
+      1.6766
+     ]
+    },
+    "qwen2": {
+     "fertility": 1.4027,
+     "ci": [
+      1.3864,
+      1.4189
+     ]
+    }
+   }
+  },
   "zho_Hans": {
    "name": "Chinese (Simp.)",
    "families": {
@@ -45,6 +92,53 @@ window.__COI_DATA__ = {
      "ci": [
       0.989,
       1.0171
+     ]
+    }
+   }
+  },
+  "tha_Thai": {
+   "name": "Thai",
+   "families": {
+    "aya": {
+     "fertility": 0.9885,
+     "ci": [
+      0.9755,
+      1.0016
+     ]
+    },
+    "gemma": {
+     "fertility": 1.8421,
+     "ci": [
+      1.8184,
+      1.8667
+     ]
+    },
+    "llama3": {
+     "fertility": 2.1849,
+     "ci": [
+      2.1592,
+      2.2114
+     ]
+    },
+    "openai_cl100k": {
+     "fertility": 4.3427,
+     "ci": [
+      4.2869,
+      4.3999
+     ]
+    },
+    "openai_o200k": {
+     "fertility": 1.9547,
+     "ci": [
+      1.9314,
+      1.979
+     ]
+    },
+    "qwen2": {
+     "fertility": 2.5416,
+     "ci": [
+      2.509,
+      2.5753
      ]
     }
    }
@@ -96,6 +190,147 @@ window.__COI_DATA__ = {
     }
    }
   },
+  "ind_Latn": {
+   "name": "Indonesian",
+   "families": {
+    "aya": {
+     "fertility": 1.075,
+     "ci": [
+      1.0661,
+      1.084
+     ]
+    },
+    "gemma": {
+     "fertility": 1.1097,
+     "ci": [
+      1.0997,
+      1.1198
+     ]
+    },
+    "llama3": {
+     "fertility": 1.5376,
+     "ci": [
+      1.5233,
+      1.5522
+     ]
+    },
+    "openai_cl100k": {
+     "fertility": 1.548,
+     "ci": [
+      1.5336,
+      1.5627
+     ]
+    },
+    "openai_o200k": {
+     "fertility": 1.2461,
+     "ci": [
+      1.2348,
+      1.2576
+     ]
+    },
+    "qwen2": {
+     "fertility": 1.5394,
+     "ci": [
+      1.5248,
+      1.5543
+     ]
+    }
+   }
+  },
+  "tur_Latn": {
+   "name": "Turkish",
+   "families": {
+    "aya": {
+     "fertility": 1.1182,
+     "ci": [
+      1.1079,
+      1.1284
+     ]
+    },
+    "gemma": {
+     "fertility": 1.4029,
+     "ci": [
+      1.3888,
+      1.4171
+     ]
+    },
+    "llama3": {
+     "fertility": 1.402,
+     "ci": [
+      1.388,
+      1.4164
+     ]
+    },
+    "openai_cl100k": {
+     "fertility": 1.9206,
+     "ci": [
+      1.8996,
+      1.9414
+     ]
+    },
+    "openai_o200k": {
+     "fertility": 1.4305,
+     "ci": [
+      1.4164,
+      1.4445
+     ]
+    },
+    "qwen2": {
+     "fertility": 1.6236,
+     "ci": [
+      1.6066,
+      1.6411
+     ]
+    }
+   }
+  },
+  "deu_Latn": {
+   "name": "German",
+   "families": {
+    "aya": {
+     "fertility": 1.1856,
+     "ci": [
+      1.1761,
+      1.1954
+     ]
+    },
+    "gemma": {
+     "fertility": 1.2555,
+     "ci": [
+      1.2445,
+      1.2668
+     ]
+    },
+    "llama3": {
+     "fertility": 1.5816,
+     "ci": [
+      1.5663,
+      1.5975
+     ]
+    },
+    "openai_cl100k": {
+     "fertility": 1.5857,
+     "ci": [
+      1.5704,
+      1.6017
+     ]
+    },
+    "openai_o200k": {
+     "fertility": 1.3108,
+     "ci": [
+      1.2992,
+      1.3224
+     ]
+    },
+    "qwen2": {
+     "fertility": 1.5589,
+     "ci": [
+      1.5437,
+      1.5746
+     ]
+    }
+   }
+  },
   "swh_Latn": {
    "name": "Swahili",
    "families": {
@@ -139,6 +374,100 @@ window.__COI_DATA__ = {
      "ci": [
       1.916,
       1.956
+     ]
+    }
+   }
+  },
+  "rus_Cyrl": {
+   "name": "Russian",
+   "families": {
+    "aya": {
+     "fertility": 1.2542,
+     "ci": [
+      1.2423,
+      1.2662
+     ]
+    },
+    "gemma": {
+     "fertility": 1.3793,
+     "ci": [
+      1.3643,
+      1.3942
+     ]
+    },
+    "llama3": {
+     "fertility": 1.6163,
+     "ci": [
+      1.5988,
+      1.6336
+     ]
+    },
+    "openai_cl100k": {
+     "fertility": 2.4622,
+     "ci": [
+      2.4347,
+      2.4903
+     ]
+    },
+    "openai_o200k": {
+     "fertility": 1.4211,
+     "ci": [
+      1.4061,
+      1.4361
+     ]
+    },
+    "qwen2": {
+     "fertility": 1.7549,
+     "ci": [
+      1.7347,
+      1.775
+     ]
+    }
+   }
+  },
+  "kor_Hang": {
+   "name": "Korean",
+   "families": {
+    "aya": {
+     "fertility": 1.2698,
+     "ci": [
+      1.2568,
+      1.2827
+     ]
+    },
+    "gemma": {
+     "fertility": 1.6398,
+     "ci": [
+      1.6229,
+      1.6569
+     ]
+    },
+    "llama3": {
+     "fertility": 1.4883,
+     "ci": [
+      1.4733,
+      1.5032
+     ]
+    },
+    "openai_cl100k": {
+     "fertility": 2.3669,
+     "ci": [
+      2.3409,
+      2.3937
+     ]
+    },
+    "openai_o200k": {
+     "fertility": 1.4723,
+     "ci": [
+      1.4574,
+      1.4875
+     ]
+    },
+    "qwen2": {
+     "fertility": 1.6299,
+     "ci": [
+      1.6122,
+      1.6474
      ]
     }
    }
@@ -190,6 +519,53 @@ window.__COI_DATA__ = {
     }
    }
   },
+  "pol_Latn": {
+   "name": "Polish",
+   "families": {
+    "aya": {
+     "fertility": 1.3037,
+     "ci": [
+      1.2906,
+      1.3168
+     ]
+    },
+    "gemma": {
+     "fertility": 1.4632,
+     "ci": [
+      1.4476,
+      1.4793
+     ]
+    },
+    "llama3": {
+     "fertility": 1.8907,
+     "ci": [
+      1.869,
+      1.9128
+     ]
+    },
+    "openai_cl100k": {
+     "fertility": 1.9139,
+     "ci": [
+      1.8919,
+      1.9365
+     ]
+    },
+    "openai_o200k": {
+     "fertility": 1.6384,
+     "ci": [
+      1.6208,
+      1.6565
+     ]
+    },
+    "qwen2": {
+     "fertility": 1.7648,
+     "ci": [
+      1.7443,
+      1.7861
+     ]
+    }
+   }
+  },
   "spa_Latn": {
    "name": "Spanish",
    "families": {
@@ -233,6 +609,147 @@ window.__COI_DATA__ = {
      "ci": [
       1.505,
       1.5369
+     ]
+    }
+   }
+  },
+  "ukr_Cyrl": {
+   "name": "Ukrainian",
+   "families": {
+    "aya": {
+     "fertility": 1.3196,
+     "ci": [
+      1.3076,
+      1.3317
+     ]
+    },
+    "gemma": {
+     "fertility": 1.6544,
+     "ci": [
+      1.6386,
+      1.6707
+     ]
+    },
+    "llama3": {
+     "fertility": 1.6417,
+     "ci": [
+      1.6257,
+      1.658
+     ]
+    },
+    "openai_cl100k": {
+     "fertility": 2.9652,
+     "ci": [
+      2.9324,
+      2.9985
+     ]
+    },
+    "openai_o200k": {
+     "fertility": 1.7471,
+     "ci": [
+      1.7307,
+      1.7641
+     ]
+    },
+    "qwen2": {
+     "fertility": 2.4977,
+     "ci": [
+      2.47,
+      2.5257
+     ]
+    }
+   }
+  },
+  "pes_Arab": {
+   "name": "Persian",
+   "families": {
+    "aya": {
+     "fertility": 1.3364,
+     "ci": [
+      1.3248,
+      1.3481
+     ]
+    },
+    "gemma": {
+     "fertility": 1.4518,
+     "ci": [
+      1.4369,
+      1.467
+     ]
+    },
+    "llama3": {
+     "fertility": 1.5222,
+     "ci": [
+      1.5065,
+      1.5381
+     ]
+    },
+    "openai_cl100k": {
+     "fertility": 3.2563,
+     "ci": [
+      3.2191,
+      3.2941
+     ]
+    },
+    "openai_o200k": {
+     "fertility": 1.53,
+     "ci": [
+      1.5138,
+      1.5463
+     ]
+    },
+    "qwen2": {
+     "fertility": 2.5771,
+     "ci": [
+      2.5466,
+      2.6077
+     ]
+    }
+   }
+  },
+  "ita_Latn": {
+   "name": "Italian",
+   "families": {
+    "aya": {
+     "fertility": 1.3411,
+     "ci": [
+      1.3285,
+      1.3532
+     ]
+    },
+    "gemma": {
+     "fertility": 1.3471,
+     "ci": [
+      1.3337,
+      1.3601
+     ]
+    },
+    "llama3": {
+     "fertility": 1.6382,
+     "ci": [
+      1.6216,
+      1.6545
+     ]
+    },
+    "openai_cl100k": {
+     "fertility": 1.6406,
+     "ci": [
+      1.6239,
+      1.657
+     ]
+    },
+    "openai_o200k": {
+     "fertility": 1.4691,
+     "ci": [
+      1.4549,
+      1.4831
+     ]
+    },
+    "qwen2": {
+     "fertility": 1.6258,
+     "ci": [
+      1.609,
+      1.6423
      ]
     }
    }
@@ -331,6 +848,53 @@ window.__COI_DATA__ = {
     }
    }
   },
+  "ron_Latn": {
+   "name": "Romanian",
+   "families": {
+    "aya": {
+     "fertility": 1.3612,
+     "ci": [
+      1.3492,
+      1.3734
+     ]
+    },
+    "gemma": {
+     "fertility": 1.555,
+     "ci": [
+      1.54,
+      1.5701
+     ]
+    },
+    "llama3": {
+     "fertility": 1.8677,
+     "ci": [
+      1.8484,
+      1.8875
+     ]
+    },
+    "openai_cl100k": {
+     "fertility": 1.8755,
+     "ci": [
+      1.856,
+      1.8953
+     ]
+    },
+    "openai_o200k": {
+     "fertility": 1.6311,
+     "ci": [
+      1.6155,
+      1.647
+     ]
+    },
+    "qwen2": {
+     "fertility": 1.8593,
+     "ci": [
+      1.8395,
+      1.8793
+     ]
+    }
+   }
+  },
   "zul_Latn": {
    "name": "Zulu",
    "families": {
@@ -425,6 +989,100 @@ window.__COI_DATA__ = {
     }
    }
   },
+  "tgl_Latn": {
+   "name": "Tagalog",
+   "families": {
+    "aya": {
+     "fertility": 1.4562,
+     "ci": [
+      1.4426,
+      1.4699
+     ]
+    },
+    "gemma": {
+     "fertility": 1.7887,
+     "ci": [
+      1.7684,
+      1.8089
+     ]
+    },
+    "llama3": {
+     "fertility": 2.0255,
+     "ci": [
+      2.0029,
+      2.0488
+     ]
+    },
+    "openai_cl100k": {
+     "fertility": 2.0498,
+     "ci": [
+      2.0269,
+      2.0735
+     ]
+    },
+    "openai_o200k": {
+     "fertility": 1.6834,
+     "ci": [
+      1.6662,
+      1.7007
+     ]
+    },
+    "qwen2": {
+     "fertility": 2.0331,
+     "ci": [
+      2.0096,
+      2.0569
+     ]
+    }
+   }
+  },
+  "ben_Beng": {
+   "name": "Bengali",
+   "families": {
+    "aya": {
+     "fertility": 1.5674,
+     "ci": [
+      1.5536,
+      1.5812
+     ]
+    },
+    "gemma": {
+     "fertility": 2.6857,
+     "ci": [
+      2.656,
+      2.7153
+     ]
+    },
+    "llama3": {
+     "fertility": 5.7581,
+     "ci": [
+      5.6927,
+      5.8223
+     ]
+    },
+    "openai_cl100k": {
+     "fertility": 5.7989,
+     "ci": [
+      5.7333,
+      5.8634
+     ]
+    },
+    "openai_o200k": {
+     "fertility": 1.6966,
+     "ci": [
+      1.6794,
+      1.7139
+     ]
+    },
+    "qwen2": {
+     "fertility": 5.0257,
+     "ci": [
+      4.965,
+      5.0862
+     ]
+    }
+   }
+  },
   "hin_Deva": {
    "name": "Hindi",
    "families": {
@@ -472,6 +1130,53 @@ window.__COI_DATA__ = {
     }
    }
   },
+  "ell_Grek": {
+   "name": "Greek",
+   "families": {
+    "aya": {
+     "fertility": 1.6433,
+     "ci": [
+      1.628,
+      1.659
+     ]
+    },
+    "gemma": {
+     "fertility": 2.2891,
+     "ci": [
+      2.2634,
+      2.3154
+     ]
+    },
+    "llama3": {
+     "fertility": 2.2321,
+     "ci": [
+      2.2081,
+      2.257
+     ]
+    },
+    "openai_cl100k": {
+     "fertility": 5.1213,
+     "ci": [
+      5.0585,
+      5.1844
+     ]
+    },
+    "openai_o200k": {
+     "fertility": 2.1314,
+     "ci": [
+      2.1086,
+      2.1553
+     ]
+    },
+    "qwen2": {
+     "fertility": 4.8984,
+     "ci": [
+      4.8338,
+      4.9627
+     ]
+    }
+   }
+  },
   "amh_Ethi": {
    "name": "Amharic",
    "families": {
@@ -515,6 +1220,53 @@ window.__COI_DATA__ = {
      "ci": [
       3.9953,
       4.0961
+     ]
+    }
+   }
+  },
+  "vie_Latn": {
+   "name": "Vietnamese",
+   "families": {
+    "aya": {
+     "fertility": 1.952,
+     "ci": [
+      1.9307,
+      1.9732
+     ]
+    },
+    "gemma": {
+     "fertility": 1.3744,
+     "ci": [
+      1.3613,
+      1.3873
+     ]
+    },
+    "llama3": {
+     "fertility": 1.3915,
+     "ci": [
+      1.3784,
+      1.4047
+     ]
+    },
+    "openai_cl100k": {
+     "fertility": 2.4438,
+     "ci": [
+      2.4141,
+      2.4744
+     ]
+    },
+    "openai_o200k": {
+     "fertility": 1.4896,
+     "ci": [
+      1.4755,
+      1.5039
+     ]
+    },
+    "qwen2": {
+     "fertility": 1.4352,
+     "ci": [
+      1.4215,
+      1.4491
      ]
     }
    }
@@ -636,6 +1388,18 @@ window.__COI_DATA__ = {
    "ppp": 4.730769230769231,
    "year": "2025"
   },
+  "AUT": {
+   "name": "Austria",
+   "market": 29.01923076923077,
+   "ppp": 37.02403846153846,
+   "year": "2025"
+  },
+  "BGD": {
+   "name": "Bangladesh",
+   "market": 1.3653846153846154,
+   "ppp": 5.149038461538462,
+   "year": "2025"
+  },
   "BRA": {
    "name": "Brazil",
    "market": 5.072115384615385,
@@ -658,6 +1422,12 @@ window.__COI_DATA__ = {
    "name": "Colombia",
    "market": 3.798076923076923,
    "ppp": 10.697115384615385,
+   "year": "2025"
+  },
+  "DEU": {
+   "name": "Germany",
+   "market": 28.942307692307693,
+   "ppp": 37.56730769230769,
    "year": "2025"
   },
   "EGY": {
@@ -690,16 +1460,52 @@ window.__COI_DATA__ = {
    "ppp": 30.870192307692307,
    "year": "2025"
   },
+  "GRC": {
+   "name": "Greece",
+   "market": 12.192307692307692,
+   "ppp": 21.302884615384617,
+   "year": "2025"
+  },
+  "IDN": {
+   "name": "Indonesia",
+   "market": 2.4615384615384617,
+   "ppp": 8.264423076923077,
+   "year": "2025"
+  },
   "IND": {
    "name": "India",
    "market": 1.3269230769230769,
    "ppp": 5.576923076923077,
    "year": "2025"
   },
+  "IRN": {
+   "name": "Iran",
+   "market": 2.235576923076923,
+   "ppp": 9.451923076923077,
+   "year": "2025"
+  },
+  "ITA": {
+   "name": "Italy",
+   "market": 20.23076923076923,
+   "ppp": 30.22596153846154,
+   "year": "2025"
+  },
+  "JPN": {
+   "name": "Japan",
+   "market": 18.432692307692307,
+   "ppp": 28.326923076923077,
+   "year": "2025"
+  },
   "KEN": {
    "name": "Kenya",
    "market": 1.0576923076923077,
    "ppp": 3.3221153846153846,
+   "year": "2025"
+  },
+  "KOR": {
+   "name": "South Korea",
+   "market": 18.21153846153846,
+   "ppp": 30.870192307692307,
    "year": "2025"
   },
   "MAR": {
@@ -732,10 +1538,34 @@ window.__COI_DATA__ = {
    "ppp": 4.4375,
    "year": "2025"
   },
+  "PHL": {
+   "name": "Philippines",
+   "market": 2.331730769230769,
+   "ppp": 6.951923076923077,
+   "year": "2025"
+  },
+  "POL": {
+   "name": "Poland",
+   "market": 12.26923076923077,
+   "ppp": 25.139423076923077,
+   "year": "2025"
+  },
   "PRT": {
    "name": "Portugal",
    "market": 14.389423076923077,
    "ppp": 25.115384615384617,
+   "year": "2025"
+  },
+  "ROU": {
+   "name": "Romania",
+   "market": 9.70673076923077,
+   "ppp": 23.822115384615383,
+   "year": "2025"
+  },
+  "RUS": {
+   "name": "Russia",
+   "market": 7.673076923076923,
+   "ppp": 23.66346153846154,
    "year": "2025"
   },
   "SAU": {
@@ -750,16 +1580,40 @@ window.__COI_DATA__ = {
    "ppp": 2.451923076923077,
    "year": "2025"
   },
+  "THA": {
+   "name": "Thailand",
+   "market": 3.6971153846153846,
+   "ppp": 12.29326923076923,
+   "year": "2025"
+  },
+  "TUR": {
+   "name": "Turkey",
+   "market": 7.836538461538462,
+   "ppp": 21.45673076923077,
+   "year": "2025"
+  },
   "TZA": {
    "name": "Tanzania",
    "market": 0.6105769230769231,
    "ppp": 2.1009615384615383,
    "year": "2025"
   },
+  "UKR": {
+   "name": "Ukraine",
+   "market": 2.6490384615384617,
+   "ppp": 9.014423076923077,
+   "year": "2025"
+  },
   "USA": {
    "name": "United States",
    "market": 42.69711538461539,
    "ppp": 43.02403846153846,
+   "year": "2025"
+  },
+  "VNM": {
+   "name": "Vietnam",
+   "market": 2.389423076923077,
+   "ppp": 8.451923076923077,
    "year": "2025"
   },
   "ZAF": {
@@ -977,7 +1831,23 @@ window.__COI_DATA__ = {
   "amh_Ethi": "ETH",
   "arb_Arab": "EGY",
   "hin_Deva": "IND",
-  "zho_Hans": "CHN"
+  "zho_Hans": "CHN",
+  "ind_Latn": "IDN",
+  "vie_Latn": "VNM",
+  "tha_Thai": "THA",
+  "tur_Latn": "TUR",
+  "rus_Cyrl": "RUS",
+  "deu_Latn": "DEU",
+  "ita_Latn": "ITA",
+  "pol_Latn": "POL",
+  "jpn_Jpan": "JPN",
+  "kor_Hang": "KOR",
+  "ben_Beng": "BGD",
+  "tgl_Latn": "PHL",
+  "ukr_Cyrl": "UKR",
+  "ron_Latn": "ROU",
+  "ell_Grek": "GRC",
+  "pes_Arab": "IRN"
  },
  "families": [
   "aya",

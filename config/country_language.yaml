@@ -45,6 +45,23 @@ languages:
   zho_Hans:
     primary: CHN
     alternates: []
+  # panel-widening languages -> distinct countries (Task: N>=15 regression)
+  ind_Latn: {primary: IDN, alternates: []}
+  vie_Latn: {primary: VNM, alternates: []}
+  tha_Thai: {primary: THA, alternates: []}
+  tur_Latn: {primary: TUR, alternates: []}
+  rus_Cyrl: {primary: RUS, alternates: []}
+  deu_Latn: {primary: DEU, alternates: [AUT]}
+  ita_Latn: {primary: ITA, alternates: []}
+  pol_Latn: {primary: POL, alternates: []}
+  jpn_Jpan: {primary: JPN, alternates: []}
+  kor_Hang: {primary: KOR, alternates: []}
+  ben_Beng: {primary: BGD, alternates: []}
+  tgl_Latn: {primary: PHL, alternates: []}
+  ukr_Cyrl: {primary: UKR, alternates: []}
+  ron_Latn: {primary: ROU, alternates: []}
+  ell_Grek: {primary: GRC, alternates: []}
+  pes_Arab: {primary: IRN, alternates: []}
 
 # Variant sub-study territories (Task B-8): each pairs a Portuguese variant to a
 # territory using that territory's OWN variant fertility (from Stream A corpus,
@@ -80,3 +97,20 @@ country_names:
   SAU: Saudi Arabia
   IND: India
   CHN: China
+  IDN: Indonesia
+  VNM: Vietnam
+  THA: Thailand
+  TUR: Turkey
+  RUS: Russia
+  DEU: Germany
+  AUT: Austria
+  ITA: Italy
+  POL: Poland
+  JPN: Japan
+  KOR: South Korea
+  BGD: Bangladesh
+  PHL: Philippines
+  UKR: Ukraine
+  ROU: Romania
+  GRC: Greece
+  IRN: Iran
