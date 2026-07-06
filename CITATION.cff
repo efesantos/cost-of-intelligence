@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+title: "Cost of Intelligence: a multi-country token affordability index"
+message: "If you use this work, please cite it as below."
+type: software
+authors:
+  - family-names: Santos
+    given-names: Elmer
+date-released: 2026-07-06
+license: MIT
+repository-code: "https://github.com/efesantos/cost-of-intelligence"

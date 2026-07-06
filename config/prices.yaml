@@ -1,0 +1,81 @@
+_meta:
+  retrieved_at: '2026-07-06T01:02:39Z'
+  snapshot: data/raw/prices/openrouter_20260706.json
+  note: prices in USD per 1M tokens; input & output separate; Gemini stands in for
+    gemma-family price [INFERENCE]; Cohere Command for aya-family price [INFERENCE]
+anchors:
+  openai_o200k:
+    flagship:
+      model: openai/gpt-4o
+      input_usd_per_mtok: 2.5
+      output_usd_per_mtok: 10.0
+      source: openrouter
+      source_url: https://openrouter.ai/api/v1/models
+      retrieved_at: '2026-07-06T01:02:39Z'
+    small:
+      model: openai/gpt-4o-mini
+      input_usd_per_mtok: 0.15
+      output_usd_per_mtok: 0.6
+      source: openrouter
+      source_url: https://openrouter.ai/api/v1/models
+      retrieved_at: '2026-07-06T01:02:39Z'
+  llama3:
+    flagship:
+      model: meta-llama/llama-3.3-70b-instruct
+      input_usd_per_mtok: 0.1
+      output_usd_per_mtok: 0.32
+      source: openrouter
+      source_url: https://openrouter.ai/api/v1/models
+      retrieved_at: '2026-07-06T01:02:39Z'
+    small:
+      model: meta-llama/llama-3.1-8b-instruct
+      input_usd_per_mtok: 0.02
+      output_usd_per_mtok: 0.03
+      source: openrouter
+      source_url: https://openrouter.ai/api/v1/models
+      retrieved_at: '2026-07-06T01:02:39Z'
+  qwen2:
+    flagship:
+      model: qwen/qwen-2.5-72b-instruct
+      input_usd_per_mtok: 0.36
+      output_usd_per_mtok: 0.4
+      source: openrouter
+      source_url: https://openrouter.ai/api/v1/models
+      retrieved_at: '2026-07-06T01:02:39Z'
+    small:
+      model: qwen/qwen-2.5-7b-instruct
+      input_usd_per_mtok: 0.04
+      output_usd_per_mtok: 0.1
+      source: openrouter
+      source_url: https://openrouter.ai/api/v1/models
+      retrieved_at: '2026-07-06T01:02:39Z'
+  gemma:
+    flagship:
+      model: google/gemma-2-27b-it
+      input_usd_per_mtok: 0.65
+      output_usd_per_mtok: 0.65
+      source: openrouter
+      source_url: https://openrouter.ai/api/v1/models
+      retrieved_at: '2026-07-06T01:02:39Z'
+    small:
+      model: google/gemini-2.5-flash-lite
+      input_usd_per_mtok: 0.1
+      output_usd_per_mtok: 0.4
+      source: openrouter
+      source_url: https://openrouter.ai/api/v1/models
+      retrieved_at: '2026-07-06T01:02:39Z'
+  aya:
+    flagship:
+      model: cohere/command-r-plus-08-2024
+      input_usd_per_mtok: 2.5
+      output_usd_per_mtok: 10.0
+      source: openrouter
+      source_url: https://openrouter.ai/api/v1/models
+      retrieved_at: '2026-07-06T01:02:39Z'
+    small:
+      model: cohere/command-r7b-12-2024
+      input_usd_per_mtok: 0.0375
+      output_usd_per_mtok: 0.15
+      source: openrouter
+      source_url: https://openrouter.ai/api/v1/models
+      retrieved_at: '2026-07-06T01:02:39Z'

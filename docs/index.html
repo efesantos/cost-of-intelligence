@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cost of Intelligence — affordability explorer</title>
+<style>
+  :root{--bg:#fbfbfa;--fg:#1a1a1a;--muted:#6b6b6b;--line:#e4e4e1;--accent:#0b5cad;--pos:#1a7f43}
+  @media (prefers-color-scheme:dark){:root{--bg:#161616;--fg:#ececec;--muted:#9a9a9a;--line:#333;--accent:#5ea0e6;--pos:#4ade80}}
+  *{box-sizing:border-box}body{font:15px/1.55 system-ui,sans-serif;margin:0;background:var(--bg);color:var(--fg)}
+  header{padding:22px 24px 8px}h1{font-size:20px;margin:0 0 4px}.sub{color:var(--muted);font-size:13px;max-width:720px}
+  main{max-width:860px;margin:0 auto;padding:20px 24px 60px}
+  .controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin:18px 0 26px}
+  label{display:block;font-size:12px;color:var(--muted);margin-bottom:4px}
+  select,input[type=range]{width:100%}
+  select{padding:6px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg)}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+  .card{border:1px solid var(--line);border-radius:12px;padding:16px}
+  .card .k{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+  .card .v{font-size:26px;font-weight:640;margin:6px 0 2px}
+  .card .u{font-size:12px;color:var(--muted)}
+  .note{font-size:12px;color:var(--muted);margin-top:22px;border-top:1px solid var(--line);padding-top:14px}
+  .foot{font-size:11px;color:var(--muted);margin-top:10px}
+  code{font-size:12px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Cost of Intelligence — affordability explorer</h1>
+  <div class="sub">How many minutes of local work buy the same answer? Pick a language, country,
+  tokenizer family, and bundle size; the four instruments recompute live from date-stamped
+  fertility, prices, and wages. <b>Affordability only</b> — token prices are one global USD
+  (Law of One Price), so this is not a currency-valuation claim.</div>
+</header>
+<main>
+  <div class="controls">
+    <div><label>Language</label><select id="lang"></select></div>
+    <div><label>Country (wage)</label><select id="country"></select></div>
+    <div><label>Tokenizer family</label><select id="family"></select></div>
+    <div><label>Price tier</label><select id="tier"><option value="flagship">flagship</option><option value="small">small</option></select></div>
+    <div><label>Wage basis</label><select id="wage"><option value="ppp">PPP</option><option value="market">market FX</option></select></div>
+    <div><label>Input:output ratio r</label><select id="r"><option>1</option><option selected>3</option><option>9</option></select></div>
+    <div style="grid-column:1/-1"><label>Bundle size: <span id="bundleLbl">1.0M</span> English-equivalent tokens/month</label>
+      <input type="range" id="bundle" min="0.1" max="10" step="0.1" value="1"></div>
+  </div>
+
+  <div class="cards">
+    <div class="card"><div class="k">Affordability</div><div class="v" id="wm">—</div><div class="u">minutes of local work for the bundle</div></div>
+    <div class="card"><div class="k">Intelligence Wage</div><div class="v" id="iw">—</div><div class="u">Etok bought per hour of work</div></div>
+    <div class="card"><div class="k">Real exchange rate</div><div class="v" id="er">—</div><div class="u">Etok per USD (e_real)</div></div>
+    <div class="card"><div class="k">Language Tax</div><div class="v" id="tax">—</div><div class="u">fertility − 1 surcharge</div></div>
+  </div>
+
+  <div class="card" style="margin-top:14px"><div class="k">AI adoption (Anthropic Economic Index)</div>
+    <div class="v" id="aei">—</div><div class="u">usage per-capita index (1.0 = proportional to population)</div></div>
+
+  <div class="note">
+    <b>Linearity check:</b> drag the bundle slider — affordability (minutes) scales exactly
+    linearly, so rankings never change. That is why the bundle size is an arbitrary but
+    transparent yardstick. <span id="prov"></span>
+    <div class="foot" id="foot"></div>
+  </div>
+</main>
+<script>
+let DATA=null;
+const $=id=>document.getElementById(id);
+function pblend(inp,out,r){return (inp+r*out)/(1+r);}
+function opt(sel,val,txt){const o=document.createElement('option');o.value=val;o.textContent=txt;sel.appendChild(o);}
+
+function init(d){
+  DATA=d;
+  for(const [code,info] of Object.entries(d.fertility)) opt($('lang'),code,info.name);
+  for(const [iso,w] of Object.entries(d.wages)) opt($('country'),iso,w.name);
+  for(const f of d.families) opt($('family'),f,f);
+  // defaults: Portuguese + Angola if present
+  $('lang').value = d.fertility['por_Latn']?'por_Latn':Object.keys(d.fertility)[0];
+  $('country').value = d.wages['AGO']?'AGO':Object.keys(d.wages)[0];
+  $('family').value = d.families.includes('openai_o200k')?'openai_o200k':d.families[0];
+  $('prov').textContent = `Prices retrieved ${d.price_source}; wages World Bank; fertility FLORES-200. Page data ${d.generated}.`;
+  ['lang','country','family','tier','wage','r'].forEach(id=>$(id).onchange=recompute);
+  $('bundle').oninput=recompute;
+  recompute();
+}
+function recompute(){
+  const lang=$('lang').value, iso=$('country').value, fam=$('family').value,
+        tier=$('tier').value, wageKind=$('wage').value, r=+$('r').value,
+        bundleM=+$('bundle').value; $('bundleLbl').textContent=bundleM.toFixed(1)+'M';
+  const bundleEtok=bundleM*1e6;
+  const fertObj=DATA.fertility[lang]?.families[fam];
+  const price=DATA.prices[fam]?.[tier];
+  const wage=DATA.wages[iso]?.[wageKind];
+  if(!fertObj||!price){ ['wm','iw','er','tax'].forEach(k=>$(k).textContent='n/a'); return; }
+  const fert=fertObj.fertility;
+  const pb=pblend(price.input,price.output,r);
+  const eReal=(1e6/pb)/fert;
+  $('tax').textContent='+'+Math.round((fert-1)*100)+'%';
+  $('er').textContent=(eReal>=1e6?(eReal/1e6).toFixed(2)+'M':Math.round(eReal).toLocaleString());
+  if(wage&&wage>0){
+    const iw=eReal*wage;
+    const wm=(bundleEtok*fert*pb/1e6)/wage*60;
+    $('wm').textContent=wm>=60?(wm/60).toFixed(1)+' h':Math.round(wm)+' min';
+    $('iw').textContent=(iw/1e6).toFixed(2)+'M';
+  } else { $('wm').textContent='no wage'; $('iw').textContent='no wage'; }
+  const aei=DATA.aei[iso];
+  $('aei').textContent = aei!=null? aei.toFixed(2) : 'n/a';
+  $('foot').textContent=`model: ${price.model} · p_blend=$${pb.toFixed(2)}/Mtok · fertility=${fert.toFixed(2)}× · wage $${(wage||0).toFixed(2)}/h (${wageKind})`;
+}
+fetch('data.json').then(r=>r.json()).then(init).catch(e=>{
+  document.querySelector('main').innerHTML='<p style="color:#b91c1c">Could not load data.json — run <code>python src/export_web.py</code> first.</p>';
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+# Pinned for reproducibility (G5). Python 3.9+.
+numpy==1.26.4
+scipy==1.13.1
+pandas==2.2.2
+pyarrow==17.0.0
+matplotlib==3.9.2
+tiktoken==0.7.0
+tokenizers==0.20.3
+datasets==2.21.0
+huggingface_hub==0.24.6
+pyyaml==6.0.2
+requests==2.32.3
+statsmodels==0.14.2
+# local shared harness (editable): pip install -e ../tokenlab
+pytest==8.3.2
+ruff==0.6.4

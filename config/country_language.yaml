@@ -1,0 +1,82 @@
+# Country <-> language mapping (Stream B, Task B-4).
+# Each language maps to a PRIMARY analysis country (ISO3) + alternates for the
+# sensitivity axis. Wage/FX/PPP data is keyed on the primary country.
+#
+# `country_effective_fertility` for the B-7 country-level regression = fertility
+# of the country's dominant language(s), weighted by cited speaker shares where
+# multiple. [INFERENCE] dominant-language weighting is a modeling choice, also
+# sensitivity-tested with an unweighted primary-language-only variant.
+
+languages:
+  eng_Latn:
+    primary: USA
+    alternates: [GBR, NGA]
+    note: "English as the reference; US wage is the numeraire anchor."
+  por_Latn:
+    primary: PRT          # FLORES por_Latn used only for launch fertility; variant claims use Stream A corpus
+    alternates: [BRA, AGO, MOZ]
+  spa_Latn:
+    primary: MEX
+    alternates: [COL, ESP]
+  fra_Latn:
+    primary: FRA
+    alternates: [SEN, CIV]
+  swh_Latn:
+    primary: KEN
+    alternates: [TZA]
+  hau_Latn:
+    primary: NGA
+    alternates: [NER]
+  yor_Latn:
+    primary: NGA
+    alternates: []
+  zul_Latn:
+    primary: ZAF
+    alternates: []
+  amh_Ethi:
+    primary: ETH
+    alternates: []
+  arb_Arab:
+    primary: EGY
+    alternates: [MAR, SAU]
+  hin_Deva:
+    primary: IND
+    alternates: []
+  zho_Hans:
+    primary: CHN
+    alternates: []
+
+# Variant sub-study territories (Task B-8): each pairs a Portuguese variant to a
+# territory using that territory's OWN variant fertility (from Stream A corpus,
+# not FLORES). Speaker/variant sources to be cited in the datasheet.
+lusophone_territories:
+  pt-PT: PRT
+  pt-BR: BRA
+  pt-AO: AGO
+  pt-MZ: MOZ
+
+# Country display names (ISO3 -> name) for reports/figures.
+country_names:
+  USA: United States
+  GBR: United Kingdom
+  PRT: Portugal
+  BRA: Brazil
+  AGO: Angola
+  MOZ: Mozambique
+  MEX: Mexico
+  COL: Colombia
+  ESP: Spain
+  FRA: France
+  SEN: Senegal
+  CIV: "Côte d'Ivoire"
+  KEN: Kenya
+  TZA: Tanzania
+  NGA: Nigeria
+  NER: Niger
+  ZAF: South Africa
+  ETH: Ethiopia
+  EGY: Egypt
+  MAR: Morocco
+  SAU: Saudi Arabia
+  IND: India
+  CHN: China

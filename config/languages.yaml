@@ -1,0 +1,44 @@
+# Language set for the fertility engine (Stream B, Task B-1 / B-4).
+# Codes are FLORES-200 (ISO 639-3 + script). English is the reference (fertility=1).
+#
+# `launch` = the paper's headline set (Lusophone + Hispanophone + a European control).
+# `extension` = African / Global-South breadth, added at near-zero marginal cost.
+# The harness takes this list as config, so adding a FLORES language is one line.
+#
+# NOTE (B-1 caveat, binding): FLORES-200 `por_Latn` is a SINGLE Portuguese row and
+# its variant provenance is not guaranteed to be European vs Brazilian. Variant-level
+# (pt-PT / pt-BR / pt-AO) claims rest ONLY on the Stream A validated 4-arm corpus
+# (Task B-8), never on this FLORES row. Recorded in docs/flores_variant_note.md.
+
+reference: eng_Latn
+
+launch:
+  - eng_Latn   # English (reference)
+  - por_Latn   # Portuguese (variant-ambiguous; see note)
+  - spa_Latn   # Spanish
+  - fra_Latn   # French (high-resource European control)
+
+extension:
+  - swh_Latn   # Swahili
+  - hau_Latn   # Hausa
+  - yor_Latn   # Yoruba
+  - zul_Latn   # Zulu
+  - amh_Ethi   # Amharic (Ge'ez script — expected high fertility)
+  - arb_Arab   # Arabic
+  - hin_Deva   # Hindi (Devanagari)
+  - zho_Hans   # Chinese (Simplified — logographic)
+
+# Human-readable names for reports/figures.
+names:
+  eng_Latn: English
+  por_Latn: Portuguese
+  spa_Latn: Spanish
+  fra_Latn: French
+  swh_Latn: Swahili
+  hau_Latn: Hausa
+  yor_Latn: Yoruba
+  zul_Latn: Zulu
+  amh_Ethi: Amharic
+  arb_Arab: Arabic
+  hin_Deva: Hindi
+  zho_Hans: Chinese (Simp.)
