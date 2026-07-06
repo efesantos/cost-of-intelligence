@@ -61,6 +61,7 @@
     <div class="foot" id="foot"></div>
   </div>
 </main>
+<script src="data.js"></script>
 <script>
 let DATA=null;
 const $=id=>document.getElementById(id);
@@ -105,8 +106,10 @@ function recompute(){
   $('aei').textContent = aei!=null? aei.toFixed(2) : 'n/a';
   $('foot').textContent=`model: ${price.model} · p_blend=$${pb.toFixed(2)}/Mtok · fertility=${fert.toFixed(2)}× · wage $${(wage||0).toFixed(2)}/h (${wageKind})`;
 }
-fetch('data.json').then(r=>r.json()).then(init).catch(e=>{
-  document.querySelector('main').innerHTML='<p style="color:#b91c1c">Could not load data.json — run <code>python src/export_web.py</code> first.</p>';
+// Prefer the inlined global (works via file:// too); fall back to fetch (GH Pages).
+if(window.__COI_DATA__){ init(window.__COI_DATA__); }
+else fetch('data.json').then(r=>r.json()).then(init).catch(()=>{
+  document.querySelector('main').innerHTML='<p style="color:#b91c1c">Could not load data — run <code>python src/export_web.py</code> first.</p>';
 });
 </script>
 </body>

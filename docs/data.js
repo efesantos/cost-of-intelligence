@@ -1,0 +1,989 @@
+window.__COI_DATA__ = {
+ "generated": "2026-07-06",
+ "price_source": "2026-07-06T01:02:39Z",
+ "fertility": {
+  "zho_Hans": {
+   "name": "Chinese (Simp.)",
+   "families": {
+    "aya": {
+     "fertility": 0.9059,
+     "ci": [
+      0.8935,
+      0.9184
+     ]
+    },
+    "gemma": {
+     "fertility": 1.077,
+     "ci": [
+      1.0627,
+      1.0916
+     ]
+    },
+    "llama3": {
+     "fertility": 1.2811,
+     "ci": [
+      1.2656,
+      1.2967
+     ]
+    },
+    "openai_cl100k": {
+     "fertility": 1.8692,
+     "ci": [
+      1.8467,
+      1.8919
+     ]
+    },
+    "openai_o200k": {
+     "fertility": 1.2485,
+     "ci": [
+      1.233,
+      1.2644
+     ]
+    },
+    "qwen2": {
+     "fertility": 1.0029,
+     "ci": [
+      0.989,
+      1.0171
+     ]
+    }
+   }
+  },
+  "eng_Latn": {
+   "name": "English",
+   "families": {
+    "aya": {
+     "fertility": 1.0,
+     "ci": [
+      1.0,
+      1.0
+     ]
+    },
+    "gemma": {
+     "fertility": 1.0,
+     "ci": [
+      1.0,
+      1.0
+     ]
+    },
+    "llama3": {
+     "fertility": 1.0,
+     "ci": [
+      1.0,
+      1.0
+     ]
+    },
+    "openai_cl100k": {
+     "fertility": 1.0,
+     "ci": [
+      1.0,
+      1.0
+     ]
+    },
+    "openai_o200k": {
+     "fertility": 1.0,
+     "ci": [
+      1.0,
+      1.0
+     ]
+    },
+    "qwen2": {
+     "fertility": 1.0,
+     "ci": [
+      1.0,
+      1.0
+     ]
+    }
+   }
+  },
+  "swh_Latn": {
+   "name": "Swahili",
+   "families": {
+    "aya": {
+     "fertility": 1.2428,
+     "ci": [
+      1.232,
+      1.2538
+     ]
+    },
+    "gemma": {
+     "fertility": 1.6119,
+     "ci": [
+      1.5957,
+      1.6277
+     ]
+    },
+    "llama3": {
+     "fertility": 1.9307,
+     "ci": [
+      1.9116,
+      1.9496
+     ]
+    },
+    "openai_cl100k": {
+     "fertility": 1.9541,
+     "ci": [
+      1.9343,
+      1.9735
+     ]
+    },
+    "openai_o200k": {
+     "fertility": 1.4856,
+     "ci": [
+      1.4717,
+      1.4995
+     ]
+    },
+    "qwen2": {
+     "fertility": 1.9362,
+     "ci": [
+      1.916,
+      1.956
+     ]
+    }
+   }
+  },
+  "por_Latn": {
+   "name": "Portuguese",
+   "families": {
+    "aya": {
+     "fertility": 1.2872,
+     "ci": [
+      1.277,
+      1.2978
+     ]
+    },
+    "gemma": {
+     "fertility": 1.2282,
+     "ci": [
+      1.2176,
+      1.2388
+     ]
+    },
+    "llama3": {
+     "fertility": 1.4723,
+     "ci": [
+      1.4594,
+      1.4856
+     ]
+    },
+    "openai_cl100k": {
+     "fertility": 1.4756,
+     "ci": [
+      1.4626,
+      1.4888
+     ]
+    },
+    "openai_o200k": {
+     "fertility": 1.2225,
+     "ci": [
+      1.2126,
+      1.2324
+     ]
+    },
+    "qwen2": {
+     "fertility": 1.4499,
+     "ci": [
+      1.4366,
+      1.463
+     ]
+    }
+   }
+  },
+  "spa_Latn": {
+   "name": "Spanish",
+   "families": {
+    "aya": {
+     "fertility": 1.309,
+     "ci": [
+      1.2969,
+      1.3214
+     ]
+    },
+    "gemma": {
+     "fertility": 1.2638,
+     "ci": [
+      1.2515,
+      1.2761
+     ]
+    },
+    "llama3": {
+     "fertility": 1.54,
+     "ci": [
+      1.524,
+      1.5559
+     ]
+    },
+    "openai_cl100k": {
+     "fertility": 1.5426,
+     "ci": [
+      1.5267,
+      1.5585
+     ]
+    },
+    "openai_o200k": {
+     "fertility": 1.3163,
+     "ci": [
+      1.3035,
+      1.3288
+     ]
+    },
+    "qwen2": {
+     "fertility": 1.5209,
+     "ci": [
+      1.505,
+      1.5369
+     ]
+    }
+   }
+  },
+  "arb_Arab": {
+   "name": "Arabic",
+   "families": {
+    "aya": {
+     "fertility": 1.3417,
+     "ci": [
+      1.3285,
+      1.3552
+     ]
+    },
+    "gemma": {
+     "fertility": 1.496,
+     "ci": [
+      1.4804,
+      1.5122
+     ]
+    },
+    "llama3": {
+     "fertility": 1.6527,
+     "ci": [
+      1.6355,
+      1.6699
+     ]
+    },
+    "openai_cl100k": {
+     "fertility": 3.0269,
+     "ci": [
+      2.9947,
+      3.0599
+     ]
+    },
+    "openai_o200k": {
+     "fertility": 1.3808,
+     "ci": [
+      1.3667,
+      1.3954
+     ]
+    },
+    "qwen2": {
+     "fertility": 1.6284,
+     "ci": [
+      1.611,
+      1.6462
+     ]
+    }
+   }
+  },
+  "hau_Latn": {
+   "name": "Hausa",
+   "families": {
+    "aya": {
+     "fertility": 1.3548,
+     "ci": [
+      1.3411,
+      1.3688
+     ]
+    },
+    "gemma": {
+     "fertility": 1.7269,
+     "ci": [
+      1.7073,
+      1.7461
+     ]
+    },
+    "llama3": {
+     "fertility": 1.972,
+     "ci": [
+      1.9483,
+      1.9952
+     ]
+    },
+    "openai_cl100k": {
+     "fertility": 1.994,
+     "ci": [
+      1.9703,
+      2.0176
+     ]
+    },
+    "openai_o200k": {
+     "fertility": 1.5503,
+     "ci": [
+      1.5342,
+      1.5663
+     ]
+    },
+    "qwen2": {
+     "fertility": 1.9441,
+     "ci": [
+      1.9215,
+      1.9664
+     ]
+    }
+   }
+  },
+  "zul_Latn": {
+   "name": "Zulu",
+   "families": {
+    "aya": {
+     "fertility": 1.4005,
+     "ci": [
+      1.3865,
+      1.4143
+     ]
+    },
+    "gemma": {
+     "fertility": 2.0228,
+     "ci": [
+      2.0005,
+      2.0452
+     ]
+    },
+    "llama3": {
+     "fertility": 2.1866,
+     "ci": [
+      2.1631,
+      2.2104
+     ]
+    },
+    "openai_cl100k": {
+     "fertility": 2.2126,
+     "ci": [
+      2.1886,
+      2.237
+     ]
+    },
+    "openai_o200k": {
+     "fertility": 1.7206,
+     "ci": [
+      1.7032,
+      1.7379
+     ]
+    },
+    "qwen2": {
+     "fertility": 2.1878,
+     "ci": [
+      2.1635,
+      2.2125
+     ]
+    }
+   }
+  },
+  "fra_Latn": {
+   "name": "French",
+   "families": {
+    "aya": {
+     "fertility": 1.4016,
+     "ci": [
+      1.3891,
+      1.4146
+     ]
+    },
+    "gemma": {
+     "fertility": 1.3613,
+     "ci": [
+      1.3481,
+      1.3749
+     ]
+    },
+    "llama3": {
+     "fertility": 1.5999,
+     "ci": [
+      1.5845,
+      1.6161
+     ]
+    },
+    "openai_cl100k": {
+     "fertility": 1.6062,
+     "ci": [
+      1.5907,
+      1.6226
+     ]
+    },
+    "openai_o200k": {
+     "fertility": 1.3679,
+     "ci": [
+      1.3554,
+      1.3808
+     ]
+    },
+    "qwen2": {
+     "fertility": 1.5801,
+     "ci": [
+      1.5645,
+      1.5965
+     ]
+    }
+   }
+  },
+  "hin_Deva": {
+   "name": "Hindi",
+   "families": {
+    "aya": {
+     "fertility": 1.5831,
+     "ci": [
+      1.5689,
+      1.598
+     ]
+    },
+    "gemma": {
+     "fertility": 1.8631,
+     "ci": [
+      1.8441,
+      1.8824
+     ]
+    },
+    "llama3": {
+     "fertility": 2.5215,
+     "ci": [
+      2.4942,
+      2.5501
+     ]
+    },
+    "openai_cl100k": {
+     "fertility": 4.7586,
+     "ci": [
+      4.7052,
+      4.8142
+     ]
+    },
+    "openai_o200k": {
+     "fertility": 1.5732,
+     "ci": [
+      1.5579,
+      1.5888
+     ]
+    },
+    "qwen2": {
+     "fertility": 4.4154,
+     "ci": [
+      4.3618,
+      4.4714
+     ]
+    }
+   }
+  },
+  "amh_Ethi": {
+   "name": "Amharic",
+   "families": {
+    "aya": {
+     "fertility": 1.7057,
+     "ci": [
+      1.6885,
+      1.723
+     ]
+    },
+    "gemma": {
+     "fertility": 3.1457,
+     "ci": [
+      3.1086,
+      3.1839
+     ]
+    },
+    "llama3": {
+     "fertility": 7.5863,
+     "ci": [
+      7.4961,
+      7.6774
+     ]
+    },
+    "openai_cl100k": {
+     "fertility": 7.5934,
+     "ci": [
+      7.5027,
+      7.6843
+     ]
+    },
+    "openai_o200k": {
+     "fertility": 5.7787,
+     "ci": [
+      5.7108,
+      5.8465
+     ]
+    },
+    "qwen2": {
+     "fertility": 4.0454,
+     "ci": [
+      3.9953,
+      4.0961
+     ]
+    }
+   }
+  },
+  "yor_Latn": {
+   "name": "Yoruba",
+   "families": {
+    "aya": {
+     "fertility": 2.0549,
+     "ci": [
+      2.0215,
+      2.0889
+     ]
+    },
+    "gemma": {
+     "fertility": 2.4511,
+     "ci": [
+      2.4063,
+      2.4971
+     ]
+    },
+    "llama3": {
+     "fertility": 2.7215,
+     "ci": [
+      2.6717,
+      2.7724
+     ]
+    },
+    "openai_cl100k": {
+     "fertility": 2.9522,
+     "ci": [
+      2.8963,
+      3.0093
+     ]
+    },
+    "openai_o200k": {
+     "fertility": 2.1672,
+     "ci": [
+      2.1292,
+      2.2057
+     ]
+    },
+    "qwen2": {
+     "fertility": 2.6873,
+     "ci": [
+      2.6392,
+      2.7363
+     ]
+    }
+   }
+  }
+ },
+ "prices": {
+  "openai_o200k": {
+   "flagship": {
+    "model": "openai/gpt-4o",
+    "input": 2.5,
+    "output": 10.0
+   },
+   "small": {
+    "model": "openai/gpt-4o-mini",
+    "input": 0.15,
+    "output": 0.6
+   }
+  },
+  "llama3": {
+   "flagship": {
+    "model": "meta-llama/llama-3.3-70b-instruct",
+    "input": 0.1,
+    "output": 0.32
+   },
+   "small": {
+    "model": "meta-llama/llama-3.1-8b-instruct",
+    "input": 0.02,
+    "output": 0.03
+   }
+  },
+  "qwen2": {
+   "flagship": {
+    "model": "qwen/qwen-2.5-72b-instruct",
+    "input": 0.36,
+    "output": 0.4
+   },
+   "small": {
+    "model": "qwen/qwen-2.5-7b-instruct",
+    "input": 0.04,
+    "output": 0.1
+   }
+  },
+  "gemma": {
+   "flagship": {
+    "model": "google/gemma-2-27b-it",
+    "input": 0.65,
+    "output": 0.65
+   },
+   "small": {
+    "model": "google/gemini-2.5-flash-lite",
+    "input": 0.1,
+    "output": 0.4
+   }
+  },
+  "aya": {
+   "flagship": {
+    "model": "cohere/command-r-plus-08-2024",
+    "input": 2.5,
+    "output": 10.0
+   },
+   "small": {
+    "model": "cohere/command-r7b-12-2024",
+    "input": 0.0375,
+    "output": 0.15
+   }
+  }
+ },
+ "wages": {
+  "AGO": {
+   "name": "Angola",
+   "market": 1.375,
+   "ppp": 4.730769230769231,
+   "year": "2025"
+  },
+  "BRA": {
+   "name": "Brazil",
+   "market": 5.072115384615385,
+   "ppp": 10.899038461538462,
+   "year": "2025"
+  },
+  "CHN": {
+   "name": "China",
+   "market": 6.841346153846154,
+   "ppp": 14.01923076923077,
+   "year": "2025"
+  },
+  "CIV": {
+   "name": "C\u00f4te d'Ivoire",
+   "market": 1.3365384615384615,
+   "ppp": 3.7259615384615383,
+   "year": "2025"
+  },
+  "COL": {
+   "name": "Colombia",
+   "market": 3.798076923076923,
+   "ppp": 10.697115384615385,
+   "year": "2025"
+  },
+  "EGY": {
+   "name": "Egypt",
+   "market": 1.5673076923076923,
+   "ppp": 9.29326923076923,
+   "year": "2025"
+  },
+  "ESP": {
+   "name": "Spain",
+   "market": 17.846153846153847,
+   "ppp": 28.764423076923077,
+   "year": "2025"
+  },
+  "ETH": {
+   "name": "Ethiopia",
+   "market": 0.5336538461538461,
+   "ppp": 1.7403846153846154,
+   "year": "2025"
+  },
+  "FRA": {
+   "name": "France",
+   "market": 23.379807692307693,
+   "ppp": 31.302884615384617,
+   "year": "2025"
+  },
+  "GBR": {
+   "name": "United Kingdom",
+   "market": 26.22596153846154,
+   "ppp": 30.870192307692307,
+   "year": "2025"
+  },
+  "IND": {
+   "name": "India",
+   "market": 1.3269230769230769,
+   "ppp": 5.576923076923077,
+   "year": "2025"
+  },
+  "KEN": {
+   "name": "Kenya",
+   "market": 1.0576923076923077,
+   "ppp": 3.3221153846153846,
+   "year": "2025"
+  },
+  "MAR": {
+   "name": "Morocco",
+   "market": 2.0961538461538463,
+   "ppp": 5.269230769230769,
+   "year": "2025"
+  },
+  "MEX": {
+   "name": "Mexico",
+   "market": 6.600961538461538,
+   "ppp": 12.052884615384615,
+   "year": "2025"
+  },
+  "MOZ": {
+   "name": "Mozambique",
+   "market": 0.27403846153846156,
+   "ppp": 0.7403846153846154,
+   "year": "2025"
+  },
+  "NER": {
+   "name": "Niger",
+   "market": 0.3605769230769231,
+   "ppp": 1.0336538461538463,
+   "year": "2025"
+  },
+  "NGA": {
+   "name": "Nigeria",
+   "market": 0.6538461538461539,
+   "ppp": 4.4375,
+   "year": "2025"
+  },
+  "PRT": {
+   "name": "Portugal",
+   "market": 14.389423076923077,
+   "ppp": 25.115384615384617,
+   "year": "2025"
+  },
+  "SAU": {
+   "name": "Saudi Arabia",
+   "market": 17.341346153846153,
+   "ppp": 35.76923076923077,
+   "year": "2025"
+  },
+  "SEN": {
+   "name": "Senegal",
+   "market": 0.8557692307692307,
+   "ppp": 2.451923076923077,
+   "year": "2025"
+  },
+  "TZA": {
+   "name": "Tanzania",
+   "market": 0.6105769230769231,
+   "ppp": 2.1009615384615383,
+   "year": "2025"
+  },
+  "USA": {
+   "name": "United States",
+   "market": 42.69711538461539,
+   "ppp": 43.02403846153846,
+   "year": "2025"
+  },
+  "ZAF": {
+   "name": "South Africa",
+   "market": 3.014423076923077,
+   "ppp": 7.5,
+   "year": "2025"
+  }
+ },
+ "aei": {
+  "ABW": 0.0,
+  "AGO": 0.0456,
+  "ALB": 0.7888,
+  "AND": 2.593,
+  "ARE": 1.2922,
+  "ARG": 0.7842,
+  "ARM": 1.5415,
+  "ASM": 0.0,
+  "ATG": 0.0,
+  "AUS": 4.1014,
+  "AUT": 1.6664,
+  "AZE": 0.2612,
+  "BDI": 0.0305,
+  "BEL": 1.8614,
+  "BEN": 0.2525,
+  "BFA": 0.08,
+  "BGD": 0.1119,
+  "BGR": 1.4596,
+  "BHR": 0.7105,
+  "BHS": 0.625,
+  "BIH": 0.6738,
+  "BLZ": 0.5106,
+  "BMU": 2.6604,
+  "BOL": 0.484,
+  "BRA": 0.926,
+  "BRB": 1.2914,
+  "BRN": 0.6989,
+  "BTN": 0.4003,
+  "BWA": 0.2477,
+  "CAN": 2.9136,
+  "CHE": 2.813,
+  "CHL": 1.1584,
+  "CIV": 0.1994,
+  "CMR": 0.2212,
+  "COG": 0.1284,
+  "COL": 0.8236,
+  "COM": 0.0,
+  "CPV": 0.4322,
+  "CRI": 1.312,
+  "CUW": 1.0442,
+  "CYM": 2.4086,
+  "CYP": 2.3902,
+  "CZE": 1.7111,
+  "DEU": 1.8351,
+  "DJI": 0.1044,
+  "DMA": 1.4231,
+  "DNK": 2.3071,
+  "DOM": 0.5789,
+  "DZA": 0.2541,
+  "ECU": 0.9569,
+  "EGY": 0.2812,
+  "ESP": 1.2606,
+  "EST": 3.1058,
+  "FIN": 1.8895,
+  "FJI": 0.3666,
+  "FRA": 1.9438,
+  "FRO": 0.0,
+  "FSM": 0.0,
+  "GAB": 0.2921,
+  "GBR": 2.6653,
+  "GEO": 2.1915,
+  "GHA": 0.3484,
+  "GIB": 0.0,
+  "GIN": 0.036,
+  "GMB": 0.1176,
+  "GNB": 0.0,
+  "GNQ": 0.0,
+  "GRC": 1.2848,
+  "GRD": 0.766,
+  "GRL": 0.0,
+  "GTM": 0.3656,
+  "GUM": 1.0417,
+  "GUY": 0.2231,
+  "HND": 0.236,
+  "HRV": 1.4189,
+  "HTI": 0.0686,
+  "HUN": 0.9457,
+  "IDN": 0.3579,
+  "IMN": 3.0549,
+  "IND": 0.267,
+  "IRL": 2.2575,
+  "IRQ": 0.3941,
+  "ISL": 2.8313,
+  "ISR": 7.0038,
+  "ITA": 1.4724,
+  "JAM": 0.5727,
+  "JOR": 0.4572,
+  "JPN": 1.8567,
+  "KAZ": 0.4118,
+  "KEN": 0.4587,
+  "KGZ": 0.2363,
+  "KHM": 0.2487,
+  "KIR": 0.0,
+  "KNA": 0.0,
+  "KOR": 3.7255,
+  "KWT": 0.337,
+  "LAO": 0.2886,
+  "LBN": 0.7238,
+  "LBR": 0.043,
+  "LCA": 1.1711,
+  "LIE": 3.0805,
+  "LKA": 1.0078,
+  "LSO": 0.1464,
+  "LTU": 2.1298,
+  "LUX": 2.7399,
+  "LVA": 2.1123,
+  "MAF": 0.0,
+  "MAR": 0.7364,
+  "MCO": 4.926,
+  "MDA": 1.2359,
+  "MDG": 0.1219,
+  "MDV": 1.5242,
+  "MEX": 0.3996,
+  "MHL": 0.0,
+  "MKD": 1.0834,
+  "MLT": 2.8295,
+  "MNE": 2.1302,
+  "MNG": 0.3089,
+  "MNP": 0.0,
+  "MOZ": 0.095,
+  "MRT": 0.0919,
+  "MUS": 1.3251,
+  "MWI": 0.0606,
+  "MYS": 0.7467,
+  "NAM": 0.3816,
+  "NCL": 0.9153,
+  "NER": 0.0198,
+  "NGA": 0.2019,
+  "NLD": 2.5613,
+  "NOR": 2.2598,
+  "NPL": 0.4218,
+  "NRU": 0.0,
+  "NZL": 4.0485,
+  "OMN": 0.2968,
+  "PAK": 0.2394,
+  "PAN": 0.9077,
+  "PER": 0.8486,
+  "PHL": 0.4506,
+  "PLW": 0.0,
+  "PNG": 0.0391,
+  "POL": 1.6076,
+  "PRI": 0.8348,
+  "PRT": 2.0126,
+  "PRY": 0.5773,
+  "PSE": 0.3829,
+  "PYF": 1.1731,
+  "QAT": 0.7669,
+  "ROU": 1.0401,
+  "RWA": 0.2991,
+  "SAU": 0.4143,
+  "SEN": 0.2948,
+  "SGP": 4.5717,
+  "SLB": 0.0,
+  "SLE": 0.0408,
+  "SLV": 0.3996,
+  "SMR": 2.9358,
+  "SRB": 1.4216,
+  "STP": 0.0,
+  "SUR": 0.2364,
+  "SVK": 0.9717,
+  "SVN": 1.6549,
+  "SWE": 2.1988,
+  "SWZ": 0.1978,
+  "SXM": 0.0,
+  "SYC": 0.8393,
+  "TCA": 0.0,
+  "TCD": 0.0244,
+  "TGO": 0.1119,
+  "THA": 0.9352,
+  "TJK": 0.0592,
+  "TKM": 0.0144,
+  "TLS": 0.1524,
+  "TON": 0.0,
+  "TTO": 0.7058,
+  "TUN": 0.8865,
+  "TUR": 0.683,
+  "TUV": 0.0,
+  "TWN": 2.295,
+  "TZA": 0.0416,
+  "UGA": 0.0859,
+  "UKR": 0.9231,
+  "URY": 1.3136,
+  "USA": 3.6244,
+  "UZB": 0.0801,
+  "VCT": 0.0,
+  "VGB": 0.0,
+  "VIR": 0.0,
+  "VNM": 0.5969,
+  "VUT": 0.0,
+  "WSM": 0.0,
+  "XKX": 0.4279,
+  "ZAF": 0.4576,
+  "ZMB": 0.1141,
+  "ZWE": 0.1536
+ },
+ "lang_country": {
+  "eng_Latn": "USA",
+  "por_Latn": "PRT",
+  "spa_Latn": "MEX",
+  "fra_Latn": "FRA",
+  "swh_Latn": "KEN",
+  "hau_Latn": "NGA",
+  "yor_Latn": "NGA",
+  "zul_Latn": "ZAF",
+  "amh_Ethi": "ETH",
+  "arb_Arab": "EGY",
+  "hin_Deva": "IND",
+  "zho_Hans": "CHN"
+ },
+ "families": [
+  "aya",
+  "gemma",
+  "llama3",
+  "openai_o200k",
+  "qwen2"
+ ]
+};

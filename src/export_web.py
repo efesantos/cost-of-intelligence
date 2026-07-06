@@ -61,8 +61,12 @@ def main():
         "families": sorted(price_map.keys()),
     }
     OUT.parent.mkdir(exist_ok=True)
-    OUT.write_text(json.dumps(out, indent=1, default=lambda x: None if pd.isna(x) else float(x)))
-    print(f"wrote {OUT.relative_to(ROOT)} "
+    blob = json.dumps(out, indent=1, default=lambda x: None if pd.isna(x) else float(x))
+    OUT.write_text(blob)  # for GitHub Pages (served over https)
+    # Also emit a JS global so the page works when opened directly via file:// (fetch
+    # of a local .json is blocked by CORS on file://; a <script src> is not).
+    (OUT.parent / "data.js").write_text("window.__COI_DATA__ = " + blob + ";\n")
+    print(f"wrote {OUT.relative_to(ROOT)} + data.js "
           f"({len(fert_map)} langs, {len(wage_map)} countries, {len(price_map)} families)")
 
 
