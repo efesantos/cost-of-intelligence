@@ -42,10 +42,12 @@ def fig_work_minutes(instr, family="openai_o200k", kind="ppp"):
         ax.text(r[f"work_minutes_{kind}"] * 1.02, yi, f"{r[f'work_minutes_{kind}']:.0f}", va="center", fontsize=7)
     ax.set_xlabel("minutes of local work to buy 1M English-equivalent tokens/month  "
                   f"({kind.upper()} wages)")
-    ax.set_title("Minutes of work to buy the same answer", fontsize=12)
+    basis = {"ppp": "World Bank GNI, PPP", "ilo": "ILOSTAT actual earnings, market US$",
+             "market": "World Bank GNI, market US$"}[kind]
+    ax.set_title(f"Minutes of work to buy the same answer\n({basis})", fontsize=12)
     ax.legend(fontsize=8, loc="lower right")
     fig.text(0.1, 0.01, SUB, fontsize=7, color="gray")
-    _save(fig, "fig_work_minutes")
+    _save(fig, "fig_work_minutes" if kind == "ppp" else f"fig_work_minutes_{kind}")
 
 
 def fig_intelligence_wage(instr, family="openai_o200k", kind="ppp"):
@@ -91,12 +93,32 @@ def fig_adoption_scatter(instr, family="openai_o200k", kind="ppp"):
     _save(fig, "fig_adoption_scatter")
 
 
+def fig_wage_basis(instr, family="openai_o200k"):
+    """Report both wage bases equally: WB-PPP vs ILOSTAT Tier-1, side by side."""
+    d = instr[instr.family == family].dropna(subset=["work_minutes_ppp", "work_minutes_ilo"]).copy()
+    d = d.sort_values("work_minutes_ppp")
+    fig, ax = plt.subplots(figsize=(8, 6.5))
+    y = np.arange(len(d))
+    ax.barh(y - 0.2, d["work_minutes_ppp"], height=0.4, color="#0072B2", label="World Bank Tier-2 (GNI/2080, PPP)")
+    ax.barh(y + 0.2, d["work_minutes_ilo"], height=0.4, color="#D55E00", label="ILOSTAT Tier-1 (actual earnings, market US$)")
+    ax.set_yticks(y)
+    ax.set_yticklabels([r.country_name for _, r in d.iterrows()], fontsize=8)
+    ax.set_xlabel("minutes of local work to buy 1M English-equivalent tokens/month")
+    ax.set_xscale("log")
+    ax.set_title("Two wage bases, reported equally\nWorld Bank GNI proxy (PPP) vs ILOSTAT actual earnings", fontsize=11)
+    ax.legend(fontsize=8, loc="lower right")
+    fig.text(0.1, 0.01, SUB, fontsize=7, color="gray")
+    _save(fig, "fig_wage_basis_comparison")
+
+
 def main():
     instr = pd.read_parquet(ROOT / "data" / "instruments.parquet")
     print("Generating instrument figures...")
-    fig_work_minutes(instr)
+    fig_work_minutes(instr, kind="ppp")
+    fig_work_minutes(instr, kind="ilo")
     fig_intelligence_wage(instr)
     fig_adoption_scatter(instr)
+    fig_wage_basis(instr)
 
 
 if __name__ == "__main__":

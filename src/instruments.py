@@ -44,6 +44,11 @@ def compute(r: float = DEFAULT_R, bundle_etok: float = DEFAULT_BUNDLE_ETOK,
             price_tier: str = "flagship", write: bool = False) -> pd.DataFrame:
     fert = pd.read_parquet(FERT)
     wages = pd.read_parquet(WAGES).set_index("country")
+    # ILOSTAT Tier-1 hourly wage (actual employee earnings), reported alongside the
+    # World Bank Tier-2 (GNI/2080) basis so every instrument carries BOTH.
+    ilo_path = ROOT / "data" / "ilostat_wages.parquet"
+    ilo = (pd.read_parquet(ilo_path).set_index("country")["hourly_wage_usd_ilo"].to_dict()
+           if ilo_path.exists() else {})
     prices = yaml.safe_load(PRICES.read_text())["anchors"]
     mapping = yaml.safe_load(MAPPING.read_text())
     lang_country = {lang: m["primary"] for lang, m in mapping["languages"].items()}
@@ -72,14 +77,17 @@ def compute(r: float = DEFAULT_R, bundle_etok: float = DEFAULT_BUNDLE_ETOK,
             "price_retrieved_at": anchor["retrieved_at"],
             "gni_year": w["gni_year"],
         }
-        for kind in ("market", "ppp"):
-            wage = w[f"hourly_wage_usd_{kind}"]
+        wage_bases = {"market": w["hourly_wage_usd_market"],   # WB Tier-2 GNI/2080, market US$
+                      "ppp": w["hourly_wage_usd_ppp"],          # WB Tier-2, PPP int$
+                      "ilo": ilo.get(country)}                  # ILOSTAT Tier-1, actual earnings US$
+        for kind, wage in wage_bases.items():
             if wage and wage > 0:
                 rec[f"iw_{kind}_tokens_per_hour"] = e_real * wage
                 rec[f"work_minutes_{kind}"] = (bundle_etok * fertility * pb / 1e6) / wage * 60
             else:
                 rec[f"iw_{kind}_tokens_per_hour"] = None
                 rec[f"work_minutes_{kind}"] = None
+        rec["hourly_wage_ilo"] = ilo.get(country)
         rows.append(rec)
 
     df = pd.DataFrame(rows)

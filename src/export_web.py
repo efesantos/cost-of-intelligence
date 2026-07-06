@@ -41,11 +41,15 @@ def main():
                                         "input": d["input_usd_per_mtok"],
                                         "output": d["output_usd_per_mtok"]}
 
+    ilo_path = ROOT / "data" / "ilostat_wages.parquet"
+    ilo = (pd.read_parquet(ilo_path).set_index("country")["hourly_wage_usd_ilo"].to_dict()
+           if ilo_path.exists() else {})
     wage_map = {}
     for _, r in wages.iterrows():
         wage_map[r["country"]] = {"name": r["country_name"],
                                   "market": r["hourly_wage_usd_market"],
                                   "ppp": r["hourly_wage_usd_ppp"],
+                                  "ilo": ilo.get(r["country"]),
                                   "year": r["gni_year"]}
 
     aei_map = {r["country"]: round(r["usage_per_capita_index"], 4)
