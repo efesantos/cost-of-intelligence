@@ -56,10 +56,17 @@ Sept 2025) on affordability. Pre-registered in [`docs/adoption_analysis_plan.md`
 
 - `src/corpus.py` + `src/run_fertility.py` — fertility for **28 languages × 6 tokenizer
   families** on FLORES-200 with paired bootstrap CIs. Identity + ordering sanity checks pass.
-  See [`reports/fertility_report.md`](reports/fertility_report.md).
+  See [`reports/fertility_report.md`](reports/fertility_report.md). A second-corpus genre
+  cross-check (UDHR legal prose) is in [`reports/udhr_crosscheck.md`](reports/udhr_crosscheck.md).
+  *Provenance note:* FLORES-200 is accessed via the ungated `Muennighoff/flores200` mirror
+  (the canonical `flores_plus` is gated); recorded in the [`DATASHEET`](DATASHEET.md).
 - `src/prices.py` — live OpenRouter anchor prices per family (flagship + small), snapshotted.
-- `src/wages.py` — World Bank GNI (market + PPP) → hourly wage, Tier-2, + GDP-PPP & internet
-  controls, for 23 countries (raw responses cached).
+- `src/wages.py` — **two independent wage bases, reported equally**: World Bank GNI
+  (market + PPP) → hourly Tier-2 proxy for **40 countries**, plus ILOSTAT Tier-1 mean
+  monthly employee earnings → hourly USD for **38 of the 40** (`data/ilostat_wages.parquet`);
+  GDP-PPP & internet controls included (raw API responses cached). The wage-basis choice
+  moves the numbers most for the poorest countries — see `fig_wage_basis_comparison` and
+  the selector on the interactive page.
 - `src/instruments.py` — the four instruments; identity + bundle-linearity unit-tested.
 - `src/aei.py` — Economic Index outcome (`usage_per_capita_index`); see [`docs/aei_notes.md`](docs/aei_notes.md).
 - `src/adoption.py` — the pre-registered regression + Spearman + leave-one-out.
@@ -80,6 +87,18 @@ pip install -e ../tokenlab && pip install -r requirements.txt
 make all      # corpus → fertility → prices → wages → instruments → figures
 pytest -q
 ```
+
+## Authorship & AI assistance
+
+This project is **co-authored with Claude (Anthropic)**, by design. The workflow is a
+deliberate planner/executor split: Elmer Santos sets the research direction, makes the
+judgment calls, and personally executes the human gates (source checks, wage-basis and
+scope decisions, final edits); Claude Fable 5 authored the execution-ready master plan;
+Claude Opus 4.8 agents executed the build at $0 API spend. Every commit carries a
+`Co-Authored-By: Claude` trailer, and every number regenerates from committed data
+via `make all`.
+
+---
 
 Anchor citation: **The African Language Tax** (arXiv 2606.24460), §6.3/§6.6 (FX) and §10.1
 (wages). Also Petrov et al. 2023; Anthropic Economic Index (McCrory et al. 2025); FLORES-200.
