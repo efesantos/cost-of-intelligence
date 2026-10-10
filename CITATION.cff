@@ -5,6 +5,8 @@ type: software
 authors:
   - family-names: Santos
     given-names: Elmer
-date-released: 2026-07-06
+version: 1.0.0
+date-released: 2026-10-10
 license: MIT
 repository-code: "https://github.com/efesantos/cost-of-intelligence"
+url: "https://efesantos.github.io/cost-of-intelligence/"

@@ -7,7 +7,6 @@ claim live.
 """
 from __future__ import annotations
 
-import datetime
 import json
 import pathlib
 
@@ -16,6 +15,15 @@ import yaml
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 OUT = ROOT / "docs" / "data.json"
+
+
+def _fertility_date() -> str | None:
+    report = ROOT / "reports" / "fertility_report.md"
+    if report.exists():
+        for line in report.read_text().splitlines():
+            if line.startswith("Generated:"):
+                return line.split()[1][:10]
+    return None
 
 
 def main():
@@ -57,9 +65,20 @@ def main():
 
     lang_country = {lang: m["primary"] for lang, m in mapping["languages"].items()}
 
+    # source dates shown on the page; "generated" is the newest of them, so re-running
+    # the export on unchanged data leaves the files unchanged
+    ilo_df = pd.read_parquet(ilo_path) if ilo_path.exists() else None
+    sources = {
+        "prices": prices["_meta"]["retrieved_at"][:10],
+        "fertility": _fertility_date(),
+        "wb_gni_year": str(wages["gni_year"].max()),
+        "ilostat_years": (f"{ilo_df['year'].min()}-{ilo_df['year'].max()}" if ilo_df is not None else None),
+        "aei_release": "release_2025_09_15 (Claude.ai, 2025-08-04 to 2025-08-11)",
+    }
     out = {
-        "generated": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d"),
+        "generated": max(sources["prices"], sources["fertility"] or ""),
         "price_source": prices["_meta"]["retrieved_at"],
+        "sources": sources,
         "fertility": fert_map, "prices": price_map, "wages": wage_map,
         "aei": aei_map, "lang_country": lang_country,
         "families": sorted(price_map.keys()),
