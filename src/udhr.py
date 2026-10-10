@@ -9,7 +9,7 @@ translated, fixed structure of preamble + 30 articles) is that second genre.
 
 This module:
   1. Downloads the Unicode UDHR XML for every FLORES language we can map
-     (`unicode-org/udhr`, data/udhr/*.xml, public domain), cached with a
+     (`unicode-org/udhr`, data/udhr/*.xml), cached with a
      retrieval timestamp to data/raw/udhr/.
   2. Aligns each language to English by (section, paragraph-index) unit id -- the
      UDHR's fixed structure makes this a true parallel corpus. Only unit ids
@@ -20,9 +20,9 @@ This module:
   4. Compares UDHR vs FLORES o200k fertility and flags any language where they
      differ by >15% relative (`genre_flag`), and writes reports/udhr_crosscheck.md.
 
-Source: Unicode Consortium UDHR in XML project (https://github.com/unicode-org/udhr,
-mirror of https://www.unicode.org/udhr/). The UDHR text itself is public domain
-(UN); the XML markup is distributed by Unicode under its data licence.
+Source: UDHR in XML project (https://github.com/unicode-org/udhr; the Unicode
+Consortium stopped hosting https://www.unicode.org/udhr/ in January 2024). No
+licence file was found in that repository, so no licence is claimed for the files.
 """
 from __future__ import annotations
 
@@ -256,8 +256,8 @@ def _write_report(df, corpora, families, names, ref) -> None:
         "same tokenlab paired-bootstrap machinery as the FLORES run. A `genre_flag` marks",
         f"any language where |UDHR - FLORES| / FLORES > {GENRE_THRESHOLD:.0%} for the o200k family.",
         "",
-        "Source: Unicode Consortium UDHR-in-XML (github.com/unicode-org/udhr). UDHR text",
-        "is public domain (UN). English is 1.000 by construction.",
+        "Source: UDHR in XML (github.com/unicode-org/udhr). No licence file was found in",
+        "that repository, so no licence is claimed for the files. English is 1.000 by construction.",
         "",
         f"Coverage: {df['language'].nunique()} languages, {len(families)} tokenizer families. "
         f"o200k genre flags: {n_flag} / {len(o)}.",

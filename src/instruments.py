@@ -41,7 +41,13 @@ def p_blend(inp: float, out: float, r: float = DEFAULT_R) -> float:
 
 
 def compute(r: float = DEFAULT_R, bundle_etok: float = DEFAULT_BUNDLE_ETOK,
-            price_tier: str = "flagship", write: bool = False) -> pd.DataFrame:
+            price_tier: str = "flagship", write: bool = False,
+            include_alternates: bool = False) -> pd.DataFrame:
+    """One row per (language, country, family). By default each language is paired
+    with its PRIMARY country only (the canonical instruments.parquet). With
+    include_alternates=True, each language is also paired with the alternate
+    countries in config/country_language.yaml (e.g. Portuguese in BRA/AGO/MOZ), for
+    the sensitivity and alternate-mapping checks; the `mapping` column says which."""
     fert = pd.read_parquet(FERT)
     wages = pd.read_parquet(WAGES).set_index("country")
     # ILOSTAT Tier-1 hourly wage (actual employee earnings), reported alongside the
@@ -51,44 +57,48 @@ def compute(r: float = DEFAULT_R, bundle_etok: float = DEFAULT_BUNDLE_ETOK,
            if ilo_path.exists() else {})
     prices = yaml.safe_load(PRICES.read_text())["anchors"]
     mapping = yaml.safe_load(MAPPING.read_text())
-    lang_country = {lang: m["primary"] for lang, m in mapping["languages"].items()}
+    targets = {lang: [(m["primary"], "primary")] +
+               ([(c, "alternate") for c in m.get("alternates", [])] if include_alternates else [])
+               for lang, m in mapping["languages"].items()}
 
     rows = []
     for _, fr in fert.iterrows():
         lang, family = fr["language"], fr["family"]
-        country = lang_country.get(lang)
-        if country is None or country not in wages.index:
-            continue
         anchor = prices.get(family, {}).get(price_tier)
         if not anchor or not anchor.get("model"):
             continue
         pb = p_blend(anchor["input_usd_per_mtok"], anchor["output_usd_per_mtok"], r)
-        w = wages.loc[country]
         fertility = fr["fertility"]
         e_real = (1e6 / pb) / fertility
-        rec = {
-            "language": lang, "language_name": fr["language_name"],
-            "country": country, "country_name": w["country_name"],
-            "family": family, "model_tier": price_tier, "model_id": anchor["model"],
-            "fertility": fertility, "surcharge": fertility - 1.0,
-            "p_blend_usd_per_mtok": pb, "r": r, "bundle_etok": bundle_etok,
-            "price_input": anchor["input_usd_per_mtok"], "price_output": anchor["output_usd_per_mtok"],
-            "e_real_tokens_per_usd": e_real,
-            "price_retrieved_at": anchor["retrieved_at"],
-            "gni_year": w["gni_year"],
-        }
-        wage_bases = {"market": w["hourly_wage_usd_market"],   # WB Tier-2 GNI/2080, market US$
-                      "ppp": w["hourly_wage_usd_ppp"],          # WB Tier-2, PPP int$
-                      "ilo": ilo.get(country)}                  # ILOSTAT Tier-1, actual earnings US$
-        for kind, wage in wage_bases.items():
-            if wage and wage > 0:
-                rec[f"iw_{kind}_tokens_per_hour"] = e_real * wage
-                rec[f"work_minutes_{kind}"] = (bundle_etok * fertility * pb / 1e6) / wage * 60
-            else:
-                rec[f"iw_{kind}_tokens_per_hour"] = None
-                rec[f"work_minutes_{kind}"] = None
-        rec["hourly_wage_ilo"] = ilo.get(country)
-        rows.append(rec)
+        for country, role in targets.get(lang, []):
+            if country not in wages.index:
+                continue
+            w = wages.loc[country]
+            rec = {
+                "language": lang, "language_name": fr["language_name"],
+                "country": country, "country_name": w["country_name"],
+                "family": family, "model_tier": price_tier, "model_id": anchor["model"],
+                "fertility": fertility, "surcharge": fertility - 1.0,
+                "p_blend_usd_per_mtok": pb, "r": r, "bundle_etok": bundle_etok,
+                "price_input": anchor["input_usd_per_mtok"], "price_output": anchor["output_usd_per_mtok"],
+                "e_real_tokens_per_usd": e_real,
+                "price_retrieved_at": anchor["retrieved_at"],
+                "gni_year": w["gni_year"],
+            }
+            wage_bases = {"market": w["hourly_wage_usd_market"],   # WB Tier-2 GNI/2080, market US$
+                          "ppp": w["hourly_wage_usd_ppp"],          # WB Tier-2, PPP int$
+                          "ilo": ilo.get(country)}                  # ILOSTAT Tier-1, actual earnings US$
+            for kind, wage in wage_bases.items():
+                if wage and wage > 0:
+                    rec[f"iw_{kind}_tokens_per_hour"] = e_real * wage
+                    rec[f"work_minutes_{kind}"] = (bundle_etok * fertility * pb / 1e6) / wage * 60
+                else:
+                    rec[f"iw_{kind}_tokens_per_hour"] = None
+                    rec[f"work_minutes_{kind}"] = None
+            rec["hourly_wage_ilo"] = ilo.get(country)
+            if include_alternates:
+                rec["mapping"] = role
+            rows.append(rec)
 
     df = pd.DataFrame(rows)
     if write:

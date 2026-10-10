@@ -10,12 +10,20 @@ commitments, not disclaimers — the analysis is built to respect them.
 
 LLM tokens are sold at a **single USD price globally** (an API price list does not vary by the
 buyer's country). Because there is no cross-country price *dispersion* in the good itself, the
-Big-Mac / UBS "the currency is over- or under-valued" style of inference is **INVALID** here.
-Those indices work precisely because the same good carries *different local prices*; tokens do
-not. What varies across countries is not the token's price but the buyer's **ability to pay** for
-it (wage) and the **quantity of tokens** their language requires (fertility). Accordingly, this
-project measures **affordability only** — how much local labour time a fixed bundle costs — and
-makes no claim about exchange-rate misalignment or purchasing-power valuation of currencies.
+*Economist* Big Mac index style of inference ("the currency is over- or under-valued") is
+**INVALID** here. That index works precisely because the same good carries *different local
+prices*; tokens do not. What varies across countries is not the token's price but the buyer's
+**ability to pay** for it (wage) and the **quantity of tokens** their language requires
+(fertility). Accordingly, this project measures **affordability only** — how much local labour
+time a fixed bundle costs, the "minutes of work" method of UBS *Prices & Earnings* — and makes no
+claim about exchange-rate misalignment or purchasing-power valuation of currencies.
+
+**Consequence for the wage basis.** Because the token is priced in US dollars and paid for at
+market exchange rates, the like-for-like "minutes of work" divides the US$ price by a wage
+converted at market rates (World Bank Atlas GNI, or ILOSTAT earnings in US$). Dividing a US$
+price by a PPP wage understates the burden wherever local prices are low: Ethiopia (Amharic) is
+about 1,620 minutes at PPP and about 5,280 at market rates. Every headline figure is therefore
+reported on both bases.
 
 ---
 
