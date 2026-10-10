@@ -3,61 +3,107 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cost of Intelligence — affordability explorer</title>
+<title>Cost of Intelligence: affordability explorer</title>
+<meta name="description" content="Minutes of local work needed to buy the same amount of AI output, by language, country and tokenizer family. Companion to the paper The Cost of Intelligence.">
+<meta property="og:title" content="Cost of Intelligence: affordability explorer">
+<meta property="og:description" content="Minutes of local work needed to buy one million English-equivalent tokens a month, by language, country and tokenizer family, on three wage bases.">
+<meta property="og:type" content="website">
 <style>
-  :root{--bg:#fbfbfa;--fg:#1a1a1a;--muted:#6b6b6b;--line:#e4e4e1;--accent:#0b5cad;--pos:#1a7f43}
-  @media (prefers-color-scheme:dark){:root{--bg:#161616;--fg:#ececec;--muted:#9a9a9a;--line:#333;--accent:#5ea0e6;--pos:#4ade80}}
-  *{box-sizing:border-box}body{font:15px/1.55 system-ui,sans-serif;margin:0;background:var(--bg);color:var(--fg)}
-  header{padding:22px 24px 8px}h1{font-size:20px;margin:0 0 4px}.sub{color:var(--muted);font-size:13px;max-width:720px}
-  main{max-width:860px;margin:0 auto;padding:20px 24px 60px}
-  .controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin:18px 0 26px}
+  :root{--bg:#fbfbfa;--fg:#1a1a1a;--muted:#5f5f5f;--line:#e4e4e1;--accent:#0b5cad;--card:#ffffff}
+  @media (prefers-color-scheme:dark){:root{--bg:#161616;--fg:#ececec;--muted:#a3a3a3;--line:#333;--accent:#7cb4ef;--card:#1d1d1d}}
+  *{box-sizing:border-box}
+  body{font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif;margin:0;background:var(--bg);color:var(--fg)}
+  a{color:var(--accent)}
+  header,main{max-width:900px;margin:0 auto;padding-left:24px;padding-right:24px}
+  header{padding-top:22px}
+  h1{font-size:21px;margin:0 0 6px}
+  .sub{color:var(--muted);font-size:14px;max-width:720px;margin:0}
+  nav{display:flex;flex-wrap:wrap;gap:6px 16px;margin:10px 0 0;font-size:14px}
+  main{padding-top:6px;padding-bottom:60px}
+  .controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin:18px 0 22px}
   label{display:block;font-size:12px;color:var(--muted);margin-bottom:4px}
   select,input[type=range]{width:100%}
-  select{padding:6px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg)}
-  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
-  .card{border:1px solid var(--line);border-radius:12px;padding:16px}
-  .card .k{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
-  .card .v{font-size:26px;font-weight:640;margin:6px 0 2px}
+  select{padding:7px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--fg);font:inherit;font-size:14px}
+  h2{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin:22px 0 8px;font-weight:600}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+  .card{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--card)}
+  .card .k{font-size:12px;color:var(--muted)}
+  .card .v{font-size:26px;font-weight:650;margin:4px 0 2px;font-variant-numeric:tabular-nums}
   .card .u{font-size:12px;color:var(--muted)}
-  .note{font-size:12px;color:var(--muted);margin-top:22px;border-top:1px solid var(--line);padding-top:14px}
-  .foot{font-size:11px;color:var(--muted);margin-top:10px}
+  .card.lead{border-color:var(--accent)}
+  .note{font-size:13px;color:var(--muted);margin-top:22px;border-top:1px solid var(--line);padding-top:14px}
+  .note p{margin:0 0 8px}
+  details{margin-top:10px}
+  summary{cursor:pointer;color:var(--fg)}
+  details ul{padding-left:20px;margin:8px 0}
+  .foot{font-size:12px;color:var(--muted);margin-top:12px}
   code{font-size:12px}
+  @media (max-width:480px){header,main{padding-left:16px;padding-right:16px}.card .v{font-size:23px}}
 </style>
 </head>
 <body>
 <header>
-  <h1>Cost of Intelligence — affordability explorer</h1>
-  <div class="sub">How many minutes of local work buy the same answer? Pick a language, country,
-  tokenizer family, and bundle size; the four instruments recompute live from date-stamped
-  fertility, prices, and wages. <b>Affordability only</b> — token prices are one global USD
-  (Law of One Price), so this is not a currency-valuation claim.</div>
+  <h1>Cost of Intelligence: affordability explorer</h1>
+  <p class="sub">How many minutes of local work does it take to buy the same amount of AI output?
+  Pick a language, a country and a tokenizer family. The figures recompute from measured tokenizer
+  fertility, OpenRouter list prices and three wage bases. This is an affordability measure only:
+  tokens sell at one US-dollar price everywhere, so it says nothing about currency values.</p>
+  <nav>
+    <a href="https://github.com/efesantos/cost-of-intelligence/blob/main/paper/main.pdf">Paper (PDF)</a>
+    <a href="https://github.com/efesantos/cost-of-intelligence">Code and data</a>
+    <a href="https://github.com/efesantos/cost-of-intelligence/blob/main/docs/caveats.md">Caveats</a>
+    <a href="https://github.com/efesantos/cost-of-intelligence/blob/main/DATASHEET.md">Datasheet</a>
+    <a href="https://github.com/efesantos/cost-of-intelligence/blob/main/CITATION.cff">How to cite</a>
+  </nav>
 </header>
 <main>
   <div class="controls">
-    <div><label>Language</label><select id="lang"></select></div>
-    <div><label>Country (wage)</label><select id="country"></select></div>
-    <div><label>Tokenizer family</label><select id="family"></select></div>
-    <div><label>Price tier</label><select id="tier"><option value="flagship">flagship</option><option value="small">small</option></select></div>
-    <div><label>Wage basis</label><select id="wage"><option value="ppp">WB Tier-2 (PPP)</option><option value="market">WB Tier-2 (market)</option><option value="ilo">ILOSTAT Tier-1</option></select></div>
-    <div><label>Input:output ratio r</label><select id="r"><option>1</option><option selected>3</option><option>9</option></select></div>
-    <div style="grid-column:1/-1"><label>Bundle size: <span id="bundleLbl">1.0M</span> English-equivalent tokens/month</label>
+    <div><label for="lang">Language</label><select id="lang"></select></div>
+    <div><label for="country">Country (sets the wage)</label><select id="country"></select></div>
+    <div><label for="family">Tokenizer family</label><select id="family"></select></div>
+    <div><label for="tier">Price tier</label><select id="tier"><option value="flagship">flagship</option><option value="small">small</option></select></div>
+    <div><label for="r">Output tokens per input token, r</label><select id="r"><option>1</option><option selected>3</option><option>9</option></select></div>
+    <div style="grid-column:1/-1"><label for="bundle">Bundle size: <span id="bundleLbl">1.0M</span> English-equivalent tokens a month</label>
       <input type="range" id="bundle" min="0.1" max="10" step="0.1" value="1"></div>
   </div>
 
+  <h2>Minutes of local work for the bundle</h2>
   <div class="cards">
-    <div class="card"><div class="k">Affordability</div><div class="v" id="wm">—</div><div class="u">minutes of local work for the bundle</div></div>
-    <div class="card"><div class="k">Intelligence Wage</div><div class="v" id="iw">—</div><div class="u">Etok bought per hour of work</div></div>
-    <div class="card"><div class="k">Real exchange rate</div><div class="v" id="er">—</div><div class="u">Etok per USD (e_real)</div></div>
-    <div class="card"><div class="k">Language Tax</div><div class="v" id="tax">—</div><div class="u">fertility − 1 surcharge</div></div>
+    <div class="card lead"><div class="k">Market-rate wage (World Bank GNI, Atlas)</div><div class="v" id="wm_market">&ndash;</div><div class="u" id="wm_market_u">&nbsp;</div></div>
+    <div class="card lead"><div class="k">PPP wage (World Bank GNI, PPP)</div><div class="v" id="wm_ppp">&ndash;</div><div class="u" id="wm_ppp_u">&nbsp;</div></div>
+    <div class="card"><div class="k">ILOSTAT mean earnings of employees</div><div class="v" id="wm_ilo">&ndash;</div><div class="u" id="wm_ilo_u">&nbsp;</div></div>
   </div>
 
-  <div class="card" style="margin-top:14px"><div class="k">AI adoption (Anthropic Economic Index)</div>
-    <div class="v" id="aei">—</div><div class="u">usage per-capita index (1.0 = proportional to population)</div></div>
+  <h2>The other instruments</h2>
+  <div class="cards">
+    <div class="card"><div class="k">Intelligence Wage</div><div class="v" id="iw">&ndash;</div><div class="u" id="iw_u">English-equivalent tokens bought by an hour of work</div></div>
+    <div class="card"><div class="k">Real exchange rate, e_real</div><div class="v" id="er">&ndash;</div><div class="u">English-equivalent tokens per US dollar</div></div>
+    <div class="card"><div class="k">Language Tax</div><div class="v" id="tax">&ndash;</div><div class="u">extra tokens needed compared with English (fertility &minus; 1)</div></div>
+    <div class="card"><div class="k">AI adoption (Anthropic Economic Index)</div><div class="v" id="aei">&ndash;</div><div class="u">share of Claude usage divided by share of working-age population; 1.0 is proportional</div></div>
+  </div>
 
   <div class="note">
-    <b>Linearity check:</b> drag the bundle slider — affordability (minutes) scales exactly
-    linearly, so rankings never change. That is why the bundle size is an arbitrary but
-    transparent yardstick. <span id="prov"></span>
+    <p><b>Why two World Bank figures?</b> Tokens are priced in US dollars and paid for at market
+    exchange rates, so the market-rate figure is the like-for-like one. The PPP figure shows the
+    burden as if tokens were priced like local goods. It is lower in every country here.</p>
+    <p><b>Bundle size.</b> Minutes scale exactly with the bundle, so moving the slider never changes
+    the order of countries. One million English-equivalent tokens is a yardstick: about 750,000 words of English, by the common rule of thumb of three-quarters of a word per token.</p>
+    <p><b>Adoption.</b> Countries where the bundle costs more work use Claude less per head, but in the
+    paper's 23-country analysis this link disappears once national income is taken into account.
+    It is an association, not a cause.</p>
+    <details>
+      <summary>Caveats that apply to every figure</summary>
+      <ul>
+        <li>One global price: affordability only, no claim about exchange rates or currency values.</li>
+        <li>The output-to-input ratio r is an assumption (default 3).</li>
+        <li>Fertility belongs to a tokenizer, not a language; always read it with the family.</li>
+        <li>Prices are API list prices, not subscription plans.</li>
+        <li>Payment access and service availability are not measured.</li>
+        <li>Fertility is measured on formal written text (FLORES-200), not chat.</li>
+        <li>Output tokens are assumed to have the same fertility as input text.</li>
+      </ul>
+    </details>
+    <div class="foot" id="prov"></div>
     <div class="foot" id="foot"></div>
   </div>
 </main>
@@ -65,51 +111,67 @@
 <script>
 let DATA=null;
 const $=id=>document.getElementById(id);
+const fmt=n=>Math.round(n).toLocaleString('en-US');
 function pblend(inp,out,r){return (inp+r*out)/(1+r);}
 function opt(sel,val,txt){const o=document.createElement('option');o.value=val;o.textContent=txt;sel.appendChild(o);}
 
 function init(d){
   DATA=d;
-  for(const [code,info] of Object.entries(d.fertility)) opt($('lang'),code,info.name);
-  for(const [iso,w] of Object.entries(d.wages)) opt($('country'),iso,w.name);
+  const langs=Object.entries(d.fertility).sort((a,b)=>a[1].name.localeCompare(b[1].name));
+  for(const [code,info] of langs) opt($('lang'),code,info.name);
+  const countries=Object.entries(d.wages).sort((a,b)=>a[1].name.localeCompare(b[1].name));
+  for(const [iso,w] of countries) opt($('country'),iso,w.name);
   for(const f of d.families) opt($('family'),f,f);
-  // defaults: Portuguese + Angola if present
-  $('lang').value = d.fertility['por_Latn']?'por_Latn':Object.keys(d.fertility)[0];
-  $('country').value = d.wages['AGO']?'AGO':Object.keys(d.wages)[0];
+  // defaults: Portuguese in Angola, o200k (gpt-4o)
+  $('lang').value = d.fertility['por_Latn']?'por_Latn':langs[0][0];
+  $('country').value = d.wages['AGO']?'AGO':countries[0][0];
   $('family').value = d.families.includes('openai_o200k')?'openai_o200k':d.families[0];
-  $('prov').textContent = `Prices retrieved ${d.price_source}; wages World Bank; fertility FLORES-200. Page data ${d.generated}.`;
-  ['lang','country','family','tier','wage','r'].forEach(id=>$(id).onchange=recompute);
+  const s=d.sources||{};
+  $('prov').textContent = `Sources: OpenRouter list prices retrieved ${s.prices||d.price_source}; `+
+    `World Bank GNI per capita ${s.wb_gni_year||''}; ILOSTAT earnings ${s.ilostat_years||''}; `+
+    `fertility on FLORES-200 devtest, measured ${s.fertility||''}; `+
+    `Anthropic Economic Index ${s.aei_release||''}.`;
+  // picking a language moves the country to that language's main country (it can be changed after)
+  $('lang').onchange=()=>{const c=(d.lang_country||{})[$('lang').value]; if(c&&d.wages[c]) $('country').value=c; recompute();};
+  ['country','family','tier','r'].forEach(id=>$(id).onchange=recompute);
   $('bundle').oninput=recompute;
   recompute();
 }
+function minutes(id,v){
+  if(v==null){$(id).textContent='no data';$(id+'_u').textContent='no wage series for this country';return;}
+  $(id).textContent=fmt(v)+' min';
+  $(id+'_u').textContent=v>=60?`about ${(v/60).toFixed(1)} hours`:'less than an hour';
+}
 function recompute(){
   const lang=$('lang').value, iso=$('country').value, fam=$('family').value,
-        tier=$('tier').value, wageKind=$('wage').value, r=+$('r').value,
-        bundleM=+$('bundle').value; $('bundleLbl').textContent=bundleM.toFixed(1)+'M';
-  const bundleEtok=bundleM*1e6;
+        tier=$('tier').value, r=+$('r').value, bundleM=+$('bundle').value;
+  $('bundleLbl').textContent=bundleM.toFixed(1)+'M';
   const fertObj=DATA.fertility[lang]?.families[fam];
   const price=DATA.prices[fam]?.[tier];
-  const wage=DATA.wages[iso]?.[wageKind];
-  if(!fertObj||!price){ ['wm','iw','er','tax'].forEach(k=>$(k).textContent='n/a'); return; }
-  const fert=fertObj.fertility;
-  const pb=pblend(price.input,price.output,r);
+  const w=DATA.wages[iso]||{};
+  if(!fertObj||!price){
+    ['wm_market','wm_ppp','wm_ilo','iw','er','tax'].forEach(k=>$(k).textContent='n/a');
+    $('foot').textContent='No price anchor for this tokenizer family.'; return;
+  }
+  const fert=fertObj.fertility, pb=pblend(price.input,price.output,r);
   const eReal=(1e6/pb)/fert;
-  $('tax').textContent='+'+Math.round((fert-1)*100)+'%';
-  $('er').textContent=(eReal>=1e6?(eReal/1e6).toFixed(2)+'M':Math.round(eReal).toLocaleString());
-  if(wage&&wage>0){
-    const iw=eReal*wage;
-    const wm=(bundleEtok*fert*pb/1e6)/wage*60;
-    $('wm').textContent=wm>=60?(wm/60).toFixed(1)+' h':Math.round(wm)+' min';
-    $('iw').textContent=(iw/1e6).toFixed(2)+'M';
-  } else { $('wm').textContent='no wage'; $('iw').textContent='no wage'; }
+  const wm=wage=>(wage&&wage>0)?(bundleM*1e6*fert*pb/1e6)/wage*60:null;
+  minutes('wm_market',wm(w.market)); minutes('wm_ppp',wm(w.ppp)); minutes('wm_ilo',wm(w.ilo));
+  $('tax').textContent=(fert>=1?'+':'')+Math.round((fert-1)*100)+'%';
+  $('er').textContent=fmt(eReal);
+  const iwM=w.market?eReal*w.market/1e6:null, iwP=w.ppp?eReal*w.ppp/1e6:null;
+  $('iw').textContent=iwM!=null?iwM.toFixed(2)+'M':'no data';
+  $('iw_u').textContent=iwP!=null?`per hour at the market-rate wage; ${iwP.toFixed(2)}M at the PPP wage`:'English-equivalent tokens bought by an hour of work';
   const aei=DATA.aei[iso];
-  $('aei').textContent = aei!=null? aei.toFixed(2) : 'n/a';
-  $('foot').textContent=`model: ${price.model} · p_blend=$${pb.toFixed(2)}/Mtok · fertility=${fert.toFixed(2)}× · wage $${(wage||0).toFixed(2)}/h (${wageKind})`;
+  $('aei').textContent = aei!=null? aei.toFixed(2) : 'not in the index';
+  $('foot').textContent=`Model ${price.model}; blended price $${pb.toFixed(3)} per million tokens; `+
+    `fertility ${fert.toFixed(2)}; hourly wage $${(w.market||0).toFixed(2)} (market rate), $${(w.ppp||0).toFixed(2)} (PPP)`+
+    (w.ilo?`, $${w.ilo.toFixed(2)} (ILOSTAT)`:'')+'.';
 }
-// Prefer the inlined global (works via file:// too); fall back to fetch (GH Pages).
+// Prefer the inlined global (works via file:// too); fall back to fetch (GitHub Pages).
 if(window.__COI_DATA__){ init(window.__COI_DATA__); }
 else fetch('data.json').then(r=>r.json()).then(init).catch(()=>{
-  document.querySelector('main').innerHTML='<p style="color:#b91c1c">Could not load data — run <code>python src/export_web.py</code> first.</p>';
+  document.querySelector('main').innerHTML='<p style="color:#b91c1c">Could not load data. Run <code>python src/export_web.py</code> first.</p>';
 });
 </script>
 </body>

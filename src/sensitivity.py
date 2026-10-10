@@ -6,9 +6,12 @@ Sweeps the modelling choices and reports the range each headline number takes, s
   (2) market FX vs PPP wages
   (3) per-tokenizer-family spread (the "tokenizer lottery")
   (4) input-only vs output-only pricing (r -> 0 and r -> large)
+  (5) all three wage bases side by side (WB market, WB PPP, ILOSTAT)
 
-Not yet implemented (flagged): FLORES+ vs UDHR fertility (needs the UDHR corpus,
-Task future); wage-tier swaps (only World Bank Tier-2 is populated so far).
+Rows are (country, language) pairs, so a country with two languages (Nigeria:
+Hausa + Yoruba) is never silently averaged, and the Lusophone alternates (BRA, AGO,
+MOZ) are computed from the alternate country mapping. The FLORES vs UDHR genre
+check is in reports/udhr_crosscheck.md.
 """
 from __future__ import annotations
 
@@ -21,15 +24,20 @@ import instruments as I
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 OUT = ROOT / "reports" / "sensitivity.md"
 
-# Focus countries for the headline "work_minutes" number.
-FOCUS = ["USA", "PRT", "BRA", "AGO", "MOZ", "KEN", "NGA", "ETH"]
+# Focus (country, language) pairs for the headline "work_minutes" number.
+FOCUS = [("USA", "eng_Latn"), ("PRT", "por_Latn"), ("BRA", "por_Latn"), ("AGO", "por_Latn"),
+         ("MOZ", "por_Latn"), ("KEN", "swh_Latn"), ("NGA", "hau_Latn"), ("NGA", "yor_Latn"),
+         ("ETH", "amh_Ethi")]
+
+
+def _label(c, lang):
+    return f"{c} ({lang.split('_')[0]})"
 
 
 def _work_minutes_table(r, kind, family="openai_o200k"):
-    df = I.compute(r=r, price_tier="flagship")
+    df = I.compute(r=r, price_tier="flagship", include_alternates=True)
     df = df[df.family == family]
-    # a country can host >1 language (e.g. Nigeria: Hausa + Yoruba); average them
-    return df.groupby("country")[f"work_minutes_{kind}"].mean()
+    return df.set_index(["country", "language"])[f"work_minutes_{kind}"]
 
 
 def main():
@@ -41,16 +49,16 @@ def main():
             for c in FOCUS:
                 if c in wm.index and pd.notna(wm[c]):
                     rows.append({"axis": "r_and_wagebasis", "r": r, "wage": kind,
-                                 "country": c, "work_minutes": wm[c]})
+                                 "country": _label(*c), "work_minutes": wm[c]})
     swept = pd.DataFrame(rows)
 
     # (3) per-family spread at r=3, ppp
-    base = I.compute(r=3)
+    base = I.compute(r=3, include_alternates=True)
     fam_rows = []
-    for c in FOCUS:
-        sub = base[(base.country == c)].dropna(subset=["work_minutes_ppp"])
+    for c, lang in FOCUS:
+        sub = base[(base.country == c) & (base.language == lang)].dropna(subset=["work_minutes_ppp"])
         if len(sub):
-            fam_rows.append({"country": c,
+            fam_rows.append({"country": _label(c, lang),
                              "min": sub["work_minutes_ppp"].min(),
                              "max": sub["work_minutes_ppp"].max(),
                              "min_family": sub.loc[sub["work_minutes_ppp"].idxmin(), "family"],
@@ -63,7 +71,7 @@ def main():
         wm = _work_minutes_table(r, "ppp")
         for c in FOCUS:
             if c in wm.index and pd.notna(wm[c]):
-                io_rows.append({"pricing": label, "country": c, "work_minutes": wm[c]})
+                io_rows.append({"pricing": label, "country": _label(*c), "work_minutes": wm[c]})
     io = pd.DataFrame(io_rows)
 
     lines = ["# Sensitivity battery (Task B-9)", "",
@@ -73,7 +81,7 @@ def main():
     lines += ["## (1)+(2) r ratio x wage basis (o200k)", "",
               "| country | " + " | ".join(f"r={r},{k}" for r in (1, 3, 9) for k in ("mkt", "ppp")) + " |",
               "|" + "---|" * 7]
-    for c in FOCUS:
+    for c in [_label(*p) for p in FOCUS]:
         cells = []
         for r in (1, 3, 9):
             for k in ("market", "ppp"):
@@ -95,18 +103,32 @@ def main():
 
     lines += ["", "## (4) input-only vs output-only pricing (PPP work_minutes)", "",
               "| country | input-only | output-only | ratio |", "|---|---|---|---|"]
-    for c in FOCUS:
+    for c in [_label(*p) for p in FOCUS]:
         i = io[(io.pricing == "input_only") & (io.country == c)]["work_minutes"]
         o = io[(io.pricing == "output_only") & (io.country == c)]["work_minutes"]
         if len(i) and len(o):
             lines.append(f"| {c} | {i.iloc[0]:.0f} | {o.iloc[0]:.0f} | {o.iloc[0]/i.iloc[0]:.2f}× |")
 
+    wb = base[base.family == "openai_o200k"].set_index(["country", "language"])
+    lines += ["", "## (5) three wage bases side by side (o200k, r=3)", "",
+              "> World Bank Tier-2 is GNI per capita / 2080 h, in market US$ (Atlas) or PPP int$;",
+              "> ILOSTAT Tier-1 is mean monthly employee earnings in US$ / (40 h x 4.333 weeks).",
+              "> Token prices are one global US$ price (caveat C1), so the market-rate columns are",
+              "> the like-for-like basis; PPP divides a US$ price by a PPP wage.", "",
+              "| country | WB market | WB PPP | ILOSTAT | market/PPP |", "|---|---|---|---|---|"]
+    for c in FOCUS:
+        if c in wb.index:
+            r_ = wb.loc[c]
+            ilo_v = f"{r_['work_minutes_ilo']:.0f}" if pd.notna(r_["work_minutes_ilo"]) else "—"
+            lines.append(f"| {_label(*c)} | {r_['work_minutes_market']:.0f} | {r_['work_minutes_ppp']:.0f} | "
+                         f"{ilo_v} | {r_['work_minutes_market'] / r_['work_minutes_ppp']:.2f}× |")
+
     lines += ["", "## Other sensitivity axes (separate reports)",
               "- **FLORES vs UDHR fertility** genre check: see `reports/udhr_crosscheck.md`",
               "  (a second, legal-prose corpus). Portuguese/Spanish/French are stable (<7%);",
               "  several languages (e.g. Vietnamese, Yoruba, Hausa) are strongly genre-sensitive.",
-              "- **Wage-tier swap**: ILOSTAT Tier-1 earnings vs World Bank Tier-2 (GNI/2080h):",
-              "  see `reports/ilostat_wages.md` / `data/ilostat_wages.parquet` where populated."]
+              "- **Wage-tier swap in the adoption regression** (pre-registered check 2): see",
+              "  `reports/adoption_results.md`. ILOSTAT coverage notes: `reports/ilostat_wages.md`."]
     OUT.write_text("\n".join(lines) + "\n")
     print(f"wrote {OUT.relative_to(ROOT)}")
     # loud summary of the tokenizer lottery

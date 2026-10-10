@@ -1,6 +1,13 @@
 {
- "generated": "2026-07-06",
- "price_source": "2026-07-06T01:02:39Z",
+ "generated": "2026-10-10",
+ "price_source": "2026-10-10T10:28:15Z",
+ "sources": {
+  "prices": "2026-10-10",
+  "fertility": "2026-07-06",
+  "wb_gni_year": "2025",
+  "ilostat_years": "2019-2025",
+  "aei_release": "release_2025_09_15 (Claude.ai, 2025-08-04 to 2025-08-11)"
+ },
  "fertility": {
   "jpn_Jpan": {
    "name": "Japanese",
@@ -1335,13 +1342,13 @@
   "llama3": {
    "flagship": {
     "model": "meta-llama/llama-3.3-70b-instruct",
-    "input": 0.1,
-    "output": 0.32
+    "input": 0.22,
+    "output": 0.5
    },
    "small": {
     "model": "meta-llama/llama-3.1-8b-instruct",
-    "input": 0.02,
-    "output": 0.03
+    "input": 0.05,
+    "output": 0.08
    }
   },
   "qwen2": {
@@ -1352,8 +1359,8 @@
    },
    "small": {
     "model": "qwen/qwen-2.5-7b-instruct",
-    "input": 0.04,
-    "output": 0.1
+    "input": 0.1,
+    "output": 0.2
    }
   },
   "gemma": {

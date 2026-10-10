@@ -9,8 +9,8 @@ unit id. Fertility = corpus-total tokens in L / corpus-total tokens in English,
 same tokenlab paired-bootstrap machinery as the FLORES run. A `genre_flag` marks
 any language where |UDHR - FLORES| / FLORES > 15% for the o200k family.
 
-Source: Unicode Consortium UDHR-in-XML (github.com/unicode-org/udhr). UDHR text
-is public domain (UN). English is 1.000 by construction.
+Source: UDHR in XML (github.com/unicode-org/udhr). No licence file was found in
+that repository, so no licence is claimed for the files. English is 1.000 by construction.
 
 Coverage: 28 languages, 6 tokenizer families. o200k genre flags: 5 / 28.
 
